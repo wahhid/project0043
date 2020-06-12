@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="sale_retur_recap_report_wizard">
+        <field name="name">Sale Retur Recap Report</field>
+        <field name="model">sale.retur.recap.report.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Sale Retur Recap Report">
+                <group>
+                    <group>
+                        <field name="date_start"/>
+                        <field name="report_type"/>
+                    </group>
+                    <group>
+                        <field name="date_end"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="get_report" string="Get Report" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_sale_retur_recap_report_wizard"
+                name="Sale Retur"
+                res_model="sale.retur.recap.report.wizard"
+                view_mode="form"
+                target="new"/>
+
+    <menuitem action="action_sale_retur_recap_report_wizard"
+              id="menu_sale_retur_recap_report_wizard"
+              parent="sale.menu_sale_report"
+              groups="sales_team.group_sale_manager"/>
+</odoo>

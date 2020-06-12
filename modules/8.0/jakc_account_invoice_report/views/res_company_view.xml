@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_jakc_account_invoice_report_res_company_inherit_form">
+            <field name="name">jakc.account.invoice.report.res.company.form.inherit</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="model">res.company</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='fax']" position="after">
+                    <field name="wa1"/>
+                    <field name="wa2"/>
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="no_rek"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Other Information">
+                        <group>
+                            <field name="other_info_row1"/>
+                            <field name="other_info_row2"/>
+                            <field name="other_info_row3"/>
+                            <field name="other_info_row4"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

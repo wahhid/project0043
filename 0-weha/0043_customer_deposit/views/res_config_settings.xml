@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+	        <field name="name">res.config.settings.view.form.inherit.0043.customer.deposit</field>
+	        <field name="model">res.config.settings</field>
+	        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+	        <field name="arch" type="xml">
+	            <xpath expr="//div[@id='account_ocr_settings']" position="after">
+	            	<h2>Customer Deposit</h2>
+	            	<div class="row mt16 o_settings_container">
+                       
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                            	<label for="customer_deposit_journal_id"/>
+                                <div class="text-muted">
+                                    Define journal that be use for customer deposit
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="customer_deposit_journal_id" class="o_light_label" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                            	<label for="customer_deposit_account_id"/>
+                                <div class="text-muted">
+                                    Define account that be use for customer deposit
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="customer_deposit_account_id" class="o_light_label" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                            	<label for="customer_overpay_journal_id"/>
+                                <div class="text-muted">
+                                    Define journal that be use for customer overpay
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="customer_overpay_journal_id" class="o_light_label" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                            	<label for="customer_overpay_account_id"/>
+                                <div class="text-muted">
+                                    Define account that be use for customer overpay
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="customer_overpay_account_id" class="o_light_label" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-12 col-lg-6 o_setting_box">
+                        	<div class="o_setting_left_pane">
+                        		<field name="is_auto_posted"/>
+                        	</div>
+                            <div class="o_setting_right_pane">
+                            	<label for="is_auto_posted"/>
+                                <div class="text-muted">
+                                    When payment deposit confirm journal entry will posted automatically
+                                </div>
+		                    </div>
+                        </div>
+                    </div>
+	            </xpath>
+	        </field>
+	    </record>
+    </data>
+</odoo>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="0043_sale_order_form_view" model="ir.ui.view">
+            <field name="name">Sale Order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="replace">
+                    <field name="partner_id" widget="res_partner_many2one" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1, 'show_vat': True}" options="{&quot;always_reload&quot;: True,'no_create': True, 'no_create_edit':True}"/>
+                </field>
+                <field name="partner_invoice_id" position="replace">
+                    <field name="partner_invoice_id" groups="sale.group_delivery_invoice_address" domain="[('parent_id','=', partner_id)]" context="{'default_type':'invoice'}" options="{&quot;always_reload&quot;: True}"/>
+                </field>
+                <field name="partner_shipping_id" position="replace">
+                    <field name="partner_shipping_id" groups="sale.group_delivery_invoice_address" domain="[('parent_id','=', partner_id)]" context="{'default_type':'delivery'}" options="{&quot;always_reload&quot;: True}"/>
+                </field>
+                <xpath expr="//field[@name='order_line']/tree[1]/field[@name='product_uom_qty']" position="replace">
+                    <field name="product_uom_qty" string="Ordered Qty" sum="Total Qty" context="{'partner_id': parent.partner_id, 'quantity': product_uom_qty, 'pricelist': parent.pricelist_id, 'uom': product_uom,'company_id': parent.company_id}"/>
+                </xpath>
+
+                <field name="partner_shipping_id" position="after">
+                    <field name="customer_credit"/>
+                </field>
+                
+                <xpath expr="//field[@name='order_line']/tree[1]/field[@name='product_uom_qty']" position="replace">
+                    <field name="product_uom_qty" string="Ordered Qty" sum="Total Qty" context="{'partner_id': parent.partner_id, 'quantity': product_uom_qty, 'pricelist': parent.pricelist_id, 'uom': product_uom,'company_id': parent.company_id}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']/tree[1]/field[@name='tax_id']" position="replace">
+                    <field name="tax_id" widget="many2many_tags" options="{'no_create': True}" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]" attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}" groups="base.group_no_one"/>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']/tree[1]/field[@name='price_subtotal']" position="replace">
+                    <field name="price_subtotal" widget="monetary" groups="base.group_no_one"/>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']/tree[1]/field[@name='price_total']" position="replace">
+                    <field name="price_total" widget="monetary"/>
+                </xpath>
+
+                <field name="amount_untaxed" position="replace">
+                    <field name="amount_untaxed" groups="base.group_no_one" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </field> 
+
+                <field name="amount_tax" position="replace">               
+                    <field name="amount_tax" groups="base.group_no_one" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </field>
+
+                <field name="note" position="replace">
+                    <field name="note" class="oe_inline" placeholder="Catatan"/>
+                </field>
+            </field>
+        </record>
+
+        
+        <!--
+        <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+            <field name="context">{'search_default_my_quotation': 1, 'show_lot_qty': True}</field>
+        </record>
+        -->
+
+    </data>
+</odoo>

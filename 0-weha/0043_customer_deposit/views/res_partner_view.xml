@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="0043_customer_deposit_res_partner" model="ir.ui.view">
+            <field name="name">0043.customer.deposit.res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='sales_purchases']/group" position='inside'>
+                    <group name="deposit_and_overpay" string="Deposit and Overpay" attrs="{'invisible': ['|',('is_company', '=', False),('customer','=',False)]}">
+                        <field name="deposit_amount"/>
+                        <field name="overpay_amount"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

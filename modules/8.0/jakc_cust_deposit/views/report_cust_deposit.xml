@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_custdeposit">
+    <t t-call="report.html_container">
+        
+            <div class="page">
+				<center><h4>PT BERKAT CIPTA PAPERA</h4></center>
+                <center><h2>Report Customer Deposit</h2></center>
+            	<div class="row">
+                    <div class="col-xs-6">
+                        <strong>Start Period</strong>: <span t-esc="data['form']['start_date']"/><br/>
+                    </div>
+                    <div class="col-xs-6">
+                        <strong>End Period</strong>: <span t-esc="data['form']['end_date']"/><br/>
+                    </div>
+                </div>
+	           	<div t-foreach="selected_partners(data['form'])" t-as="partner">
+	           		<div>
+	           			<h4>
+		           			<span>Customer : <b t-esc="partner['name']"/></span>
+	           			</h4>
+	           		</div>
+
+	           		<table class="table table-condensed">
+	                    <thead>
+							<th><strong>Date</strong></th>
+							<th><strong>Name</strong></th>
+	                        <th><strong>Debit</strong></th>
+	                        <th><strong>Credit</strong></th>
+							<th><strong>Balance</strong></th>
+	                    </thead>
+	                    <tbody>
+	                        <tr t-foreach="account_move_lines(data['form'], partner['id'])" t-as="line_ids">
+								<td>
+									<span t-esc="line_ids['date']"/>
+								</td>
+								<td>
+									<span t-esc="line_ids['number']"/>
+								</td>
+	                            <td>
+	                                <span class="pull-right" t-esc="'Rp {:,.0f}'.format(int(line_ids['debit'])).replace(',', 'X').replace('.', ',').replace('X', '.')"/>
+	                            </td>
+	                            <td>
+	                                <span class="pull-right" t-esc="'Rp {:,.0f}'.format(int(line_ids['credit'])).replace(',', 'X').replace('.', ',').replace('X', '.')"/>
+	                            </td>
+								 <td>
+	                                <span class="pull-right" t-esc="'Rp {:,.0f}'.format(int(line_ids['balance'])).replace(',', 'X').replace('.', ',').replace('X', '.')"/>
+	                            </td>
+	                        </tr>
+	                    </tbody>
+                	</table>
+	           	</div>
+       		</div>
+    </t>
+</template>
+</data>
+</openerp>

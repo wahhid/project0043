@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="0043_account_view_company_form" model="ir.ui.view">
+            <field name="name">Company</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <group name="social_media"  position="after">
+                    <group string="Other Information">
+                        <field name="wa1"/>
+                        <field name="wa2"/>
+                        <field name="no_rek"/>
+                        <field name="other_info_row1"/>
+                        <field name="other_info_row2"/>
+                        <field name="other_info_row3"/>
+                        <field name="other_info_row4"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="report.paperformat" id="paperformat_sale_item_cust_area_report">
+        <field name="name">paperformat.sale.item.cust.area.report</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_width">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">30</field>
+        <field name="margin_right">5</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report 
+        id="sale_item_cust_area_report" 
+        model="sale.item.cust.area.report.wizard" 
+        string="Sale Item Area Report" 
+        report_type="qweb-pdf" 
+        name="0043_sale.sale_item_cust_area_report_view" 
+        paperformat="paperformat_sale_item_cust_report" 
+        menu="False"/>
+
+    <template id="sale_item_cust_area_report_view">
+        <t t-call="web.html_container">
+            <div class="header" style="border-bottom: 2px solid black">
+                <h3 class="text-center">LAPORAN PENJUALAN PER AREA</h3>
+                <h4 class="text-center">
+                    <strong>From</strong>:
+                    <t t-esc="date_start"/>
+                    <strong>To</strong>:
+                    <t t-esc="date_end"/>
+                </h4>
+            </div>
+            <div class="article">
+                <table class="table table-condensed table-bordered" style="width: 100%">
+                    <thead>
+                        <th class="text-center" style="width: 15%">TGL</th>
+                        <th class="text-center" style="width: 15%">NO. FAKTUR</th>
+                        <th class="text-center" style="width: 15%">KODE ITEM</th>
+                        <th class="text-center" style="width: 15%">JENIS</th>
+                        <th class="text-center" style="width: 50%">JUMLAH</th>
+                        <th class="text-center" style="width: 20%">NOMINAL FAKTUR</th>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;"></td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;"></td>
+                                <td colspan="4" style="white-space:nowrap;margin:0px;padding:0px;">
+                                    <span t-esc="doc['area_name']"/>
+                                </td>
+                            </tr>
+                            <t t-foreach="doc['partner_ids']" t-as="partner">
+                                <tr>
+                                    <td style="white-space:nowrap;margin:0px;padding:0px;"></td>
+                                    <td style="white-space:nowrap;margin:0px;padding:0px;"></td>
+                                    <td colspan="4" style="white-space:nowrap;margin:0px;padding:0px;">
+                                        <span t-esc="partner['partner_name']"/>
+                                    </td>
+                                </tr>
+                                <t t-foreach="partner['invoice_ids']" t-as="invoice">
+                                    <t t-set="first_row" t-value="1"/>
+                                    <tr t-foreach="invoice['lines']" t-as="line">
+                                        <t t-if="first_row == 1">
+                                            <td t-att-rowspan="'%s' % (invoice['line_count'])" style="white-space:nowrap;margin:0px;padding:0px;">
+                                                <span t-esc="invoice['date_invoice']" t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/>
+                                            </td> 
+                                            <td t-att-rowspan="'%s' % (invoice['line_count'])" style="white-space:nowrap;margin:0px;padding:0px;">
+                                                <span t-esc="invoice['number']"/>
+                                            </td>
+                                            <t t-set="first_row" t-value="0"/>
+                                        </t>
+                                        <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                            <span t-esc="line['default_code']"/>
+                                        </td>
+                                        <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                            <span t-esc="line['size']"/>
+                                        </td>
+                                        <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                            <span t-esc="line['quantity']"/>
+                                        </td>
+                                        <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                            <span t-esc="line['price_subtotal']"/>
+                                        </td>
+                                    </tr>
+                                    <t t-set="first_row" t-value="1"/>
+                                    <tr>
+                                        <td colspan="4" style="white-space:nowrap;margin:0px;padding:0px;"></td>
+                                        <td style="white-space:nowrap;margin:0px;padding:0px;"><span>Total</span></td>
+                                        <td style="white-space:nowrap;margin:0px;padding:0px;">
+                                            <span t-esc="invoice['amount_total']"  t-options='{"widget": "monetary", "display_currency": company.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer">
+                <div class="row text-center" style="border-top: 1px solid black;">
+                    <div class="col col-3 offset-9 text-right">
+                        <ul class="list-inline mt-2">
+                            <li class="list-inline-item">Page:</li>
+                            <li class="list-inline-item">
+                                <span class="page"/>
+                            </li>
+                            <li class="list-inline-item">/</li>
+                            <li class="list-inline-item">
+                                <span class="topage"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

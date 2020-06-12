@@ -1,0 +1,33 @@
+from odoo import models, api, fields
+
+
+class WhatsappSendMessage(models.TransientModel):
+
+    _name = 'whatsapp.message.wizard'
+
+    user_id = fields.Many2one('res.partner', string="Recipient")
+    mobile = fields.Char(related='user_id.mobile', required=True)
+    message = fields.Text(string="message", required=True)
+    model_id = fields.Char(size=200)
+
+    def send_message(self):
+        if self.message and self.mobile:
+            if self.model_id == 'res.partner':
+                message_string = ''
+                message = self.message.split(' ')
+                for msg in message:
+                    message_string = message_string + msg + '%20'
+                message_string = message_string[:(len(message_string) - 3)]
+                return {
+                    'type': 'ir.actions.act_url',
+                    'url': "https://api.whatsapp.com/send?phone="+self.user_id.mobile+"&text=" + message_string,
+                    'target': 'self',
+                    'res_id': self.id,
+                }
+            if self.model_id == 'sale.order':
+                return {
+                    'type': 'ir.actions.act_url',
+                    'url': "https://api.whatsapp.com/send?phone="+self.user_id.mobile+"&text=" + self.message,
+                    'target': 'self',
+                    'res_id': self.id,
+                }

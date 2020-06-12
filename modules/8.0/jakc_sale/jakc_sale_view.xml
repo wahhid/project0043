@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+         <menuitem
+            action="sale.action_quotations"
+            id="menu_stock_quotations"
+            parent="stock.menu_stock_warehouse_mgmt" sequence="2"/>
+
+        <record model="ir.ui.view" id="jakc_project_0001_sale_order_inherit_view">
+            <field name="name">jakc.project.0001.sale.order.inherit.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[8]" position="replace">
+                    <button name="action_button_confirm" states="draft" string="Confirm Quotation / Sales" type="object" groups="base.group_user"/>
+                </xpath>
+                <xpath expr="//header/button[9]" position="replace">
+                    <button name="action_button_confirm" states="sent" string="Confirm Quotation / Sales" class="oe_highlight" type="object" groups="base.group_user"/>
+                </xpath>
+
+                <xpath expr="//button[@name='button_dummy']" position="replace">
+
+                </xpath>
+                <xpath expr="//field[@name='client_order_ref']" position="replace">
+
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                    <attribute name="default_order">merk_id,product_id</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='state']" position="before">
+                    <field name="merk_id" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='amount_total']" position="after">
+                    <div></div>
+                    <button name="button_dummy" states="draft,sent" string="Hitung/Ulang" type="object"/>
+                </xpath>
+
+                <xpath expr="//field[@name='note']" position="replace">
+                    <group col="4">
+                        <group colspan="2">
+                            <div>
+                                <field name="note" class="oe_inline" placeholder="Terms and conditions..."/>
+                            </div>
+                        </group>
+                        <group colspan="2">
+                            <field name="client_order_ref"/>
+                            <field name="create_uid" attrs="{'readonly': 1}"/>
+                            <field name="write_uid" attrs="{'readonly': 1}"/>
+                        </group>
+                    </group>
+                </xpath>
+
+                <field name="partner_shipping_id" position="after">
+                    <field name="customer_credit"/>
+                </field>
+    
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="jakc_sale_sale_order_tree_inherit_view">
+            <field name="name">jakc.sale.sale.order.tree.inherit.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <field name="amount_total" position="after">
+                    <field name="iface_able_to_read_amount_total" invisible="1"/>
+                </field>
+                <field name="amount_total" position="attributes">
+                    <attribute name="attrs">{'invisible':[('iface_able_to_read_amount_total','=', True)]}</attribute>
+                </field>
+
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

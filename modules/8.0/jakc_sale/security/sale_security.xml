@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+
+    <record id="base.group_sale_store" model="res.groups">
+        <field name="name">See by Store</field>
+        <field name="category_id" ref="base.module_category_sales_management"/>
+        <field name="comment">the user will have access to quotation and sale order in the sales application.</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+</data>
+</openerp>

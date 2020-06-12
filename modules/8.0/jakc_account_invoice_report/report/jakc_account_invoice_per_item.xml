@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report
+            string="Invoice Per Item Periode"
+            id="action_report_account_invoice_per_item_periode"
+            model="account.invoice"
+            report_type="qweb-pdf"
+            name="jakc_account_invoice_report.report_accountinvoiceperitemperiode"
+            file="jakc_account_invoice_report.report_accountinvoiceperitemperiode"
+        />
+    </data>
+</openerp>

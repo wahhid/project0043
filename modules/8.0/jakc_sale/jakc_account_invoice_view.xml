@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="jakc_project_0001_account_invoice_inherit_view">
+            <field name="name">jakc.project.0001.account.invoice.inherit.view</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='invoice_line']/tree/field[@name='name']" position="after">
+                    <field name="lot_id" domain="[('product_id','=', product_id)]" context="{'default_product_id': product_id}" groups="stock.group_production_lot"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</openerp>

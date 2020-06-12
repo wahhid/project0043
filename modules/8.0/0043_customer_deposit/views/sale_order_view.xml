@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="0043_customer_deposit_sale_order_form_view" model="ir.ui.view">
+            <field name="name">Sale Order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_shipping_id" position="after">
+                    <field name="show_deposit_option" invisible="1"/>
+                    <field name="is_deposit" attrs="{'invisible': [('show_deposit_option','=',False)]}"/>
+                    <field name="cust_deposit_id" domain="[('partner_id','=', partner_id)]" attrs="{'invisible': [('is_deposit','=', False)], 'required': [('is_deposit','=', True)]}"/>
+                </field>
+                
+                <field name="pricelist_id" position="replace">
+                    <field name="pricelist_id" groups="product.group_sale_pricelist"  options='{"always_reload": True}'/>
+                </field>
+            
+            </field>
+        </record>
+    </data>
+</odoo>

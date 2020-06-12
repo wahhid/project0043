@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+         <record model="ir.ui.view" id="cust_deposit_sale_order_tree_inherit_view">
+            <field name="name">cust.deposit.sale.order.tree.inherit.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <field name="state" position="before">
+                    <field name="iface_deposit"/>
+                </field>
+            </field>
+        </record>
+
+        <!--
+        <record model="ir.ui.view" id="cust_deposit_sale_order_1_inherit_view">
+            <field name="name">cust.deposit.sale.order.1.inherit.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="replace">
+                    <field name="partner_id"  
+                          position="attributes" 
+                          on_change="onchange_partner_id_2(partner_id, iface_deposit, cust_deposit_id, context)" 
+                          domain="[('customer','=',True),('is_company','=', True)]" 
+                          context="{'search_default_customer':1, 'show_address': 1}"/>
+                </field>
+                <field name="partner_shipping_id" position="after">
+                    <field name="iface_deposit"
+                           on_change="onchange_iface_deposit(iface_deposit, partner_id)"/>
+                    <field name="cust_deposit_id"
+                           attrs="{'invisible':[('iface_deposit','=', False)],'required':[('iface_deposit','=', True)]}"
+                           on_change="onchange_cust_deposit_id(cust_deposit_id)"/>
+                    <field name="rest_amount"
+                           attrs="{'invisible':[('iface_deposit','=', False)]}" />
+                </field>
+            </field>
+        </record>
+        -->
+        
+        <record model="ir.ui.view" id="cust_deposit_sale_order_2_inherit_view">
+            <field name="name">cust.deposit.sale.order.2.inherit.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="jakc_sale.jakc_project_0001_sale_order_inherit_view"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <field name="customer_credit" position="before">
+                    <field name="iface_deposit"
+                           on_change="onchange_iface_deposit(iface_deposit, partner_id)"/>
+                    <field name="cust_deposit_id"
+                           attrs="{'invisible':[('iface_deposit','=', False)],'required':[('iface_deposit','=', True)]}"
+                           on_change="onchange_cust_deposit_id(cust_deposit_id)"/>
+                </field>
+                <field name="customer_credit" position="after">
+                        <field name="rest_amount"
+                           attrs="{'invisible':[('iface_deposit','=', False)]}" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

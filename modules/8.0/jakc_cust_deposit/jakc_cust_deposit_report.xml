@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<openerp>
+    <data>
+        <report
+            id="jakc_cust_deposit_reports"
+            string="Customer Deposit"
+            model="jakc.cust.deposit.report"
+            report_type="qweb-pdf"
+            name="jakc_cust_deposit.report_custdeposit"
+            file="jakc_cust_deposit.report_custdeposit"
+            menu="False"
+         />
+
+        <menuitem action="action_report_cust_deposit" id="menu_action_cust_deposit_report" parent="menu_finance_customer_deposit" sequence="2"/>
+
+    </data>
+
+
+</openerp>

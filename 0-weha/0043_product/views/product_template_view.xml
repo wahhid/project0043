@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="0043_product_template_form_view" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="name">0043.product.template.form</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="merk_id"/>
+                <field name="warna"/>
+                <field name="motif"/>
+                <field name="page"/>
+                <field name="size"/>                
+            </field>
+        </field>
+    </record>
+
+    <record id="0043_product_template_kanban" model="ir.ui.view">
+        <field name="name">0043.product.template.kanban</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_kanban_view"/>
+        <field name="arch" type="xml">
+            <!--
+            <field name="lst_price" position="after">
+                <field name="merk_id"/>
+                <field name="warna"/>
+                <field name="motif"/>
+            </field>
+            -->
+            <ul position="inside">
+                <li>Merk: <field name="merk_id"/></li>
+                <li>Color: <field name="warna"/></li>
+                <li>Motif: <field name="motif"/></li>
+            </ul>
+        </field>
+    </record>
+
+
+    <record id="0043_product_template_tree_view" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="name">0043.product.template.tree</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="motif"/>
+                <field name="warna"/>
+                <field name="page"/>
+                <field name="size"/>                
+            </field>
+            
+            <field name="categ_id" position="replace">
+                <field name="categ_id" invisible="1"/>
+            </field>
+            
+            <field name="type" position="replace">
+                <field name="type" invisible="1"/>
+            </field>
+
+            <field name="standard_price" position="replace">
+                <field name="standard_price" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="0043_product_template_search_view" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="motif"/>
+                <field name="warna"/>
+                <field name="page"/>
+                <field name="size"/>    
+            </field>
+        </field>
+    </record>
+
+
+
+
+</odoo>

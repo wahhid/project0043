@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_merk_user,access_product_merk_user,model_product_merk,base.group_user,1,0,0,0
+access_product_merk_manager,access_product_merk_manager,model_product_merk,sales_team.group_sale_manager,1,1,1,1
+access_product_merk_portal,access_product_merk_portal,model_product_merk,base.group_portal,1,0,0,0

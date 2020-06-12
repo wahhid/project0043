@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="jakc_account_invoice_report_account_invoice_inherit_view">
+            <field name="name">jakc.account.invoice.report.account.invoice.inherit.view</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header/*" position="inside">
+                    <button name="invoice_print" string="Print Invoice" type="object" attrs="{'invisible':[('state', '!=', 'paid')]}" groups="base.group_user"/>
+                </xpath>
+
+                <xpath expr="//header/*" position="inside">
+                    <button name="%(act_wizard_other_info)d" string="Other Info" type="action" class="oe_highlight"/>
+                </xpath>
+                <field name="payment_term" position="after">
+                    <field name="other_info"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

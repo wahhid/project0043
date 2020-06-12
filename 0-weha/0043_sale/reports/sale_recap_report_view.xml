@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="report.paperformat" id="paperformat_sale_recap_report">
+        <field name="name">paperformat.sale.recap.report</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_width">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">30</field>
+        <field name="margin_right">5</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report 
+        id="sale_recap_report" 
+        model="sale.recap.report.wizard" 
+        string="Sale Recap Report" 
+        report_type="qweb-pdf" 
+        name="0043_sale.sale_recap_report_view" 
+        paperformat="paperformat_sale_recap_report" 
+        menu="False"/>
+
+    <template id="sale_recap_report_view">
+        <t t-call="web.html_container">
+            <div class="header" style="border-bottom: 2px solid black">
+                <h3 class="text-center">Laporan Penjualan Rekap</h3>
+                <h4 class="text-center">
+                    <strong>From</strong>:
+                    <t t-esc="date_start"/>
+                    <strong>To</strong>:
+                    <t t-esc="date_end"/>
+                </h4>
+            </div>
+            <div class="article">
+                <table class="table table-condensed table-bordered" style="width: 100%">
+                    <thead>
+                        <th class="text-center" style="width: 15%">No Transaksi</th>
+                        <th class="text-center" style="width: 15%">Tanggal</th>
+                        <th class="text-center" style="width: 50%">Nama Cust.</th>
+                        <th class="text-center" style="width: 20%">Total</th>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;">
+                                    <span t-esc="doc['number']"/>
+                                </td >
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                    <span t-esc="doc['date_invoice']"/>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                    <span t-esc="doc['partner_name']"/>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                    <span t-esc="doc['amount_total']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer">
+                <div class="row text-center" style="border-top: 1px solid black;">
+                    <div class="col col-3 offset-9 text-right">
+                        <ul class="list-inline mt-2">
+                            <li class="list-inline-item">Page:</li>
+                            <li class="list-inline-item">
+                                <span class="page"/>
+                            </li>
+                            <li class="list-inline-item">/</li>
+                            <li class="list-inline-item">
+                                <span class="topage"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <report id="sale_detail_recap_report" 
+        model="sale.recap.report.wizard" 
+        string="Sale Detail Recap Report" 
+        report_type="qweb-pdf" 
+        name="0043_sale.sale_detail_recap_report_view" 
+        paperformat="paperformat_sale_recap_report" menu="False"/>
+
+
+    <template id="sale_detail_recap_report_view">
+        <t t-call="web.html_container">
+            <div class="header" style="border-bottom: 2px solid black">
+                <h3 class="text-center">Laporan Penjualan Detail</h3>
+                <h4 class="text-center">
+                    <strong>From</strong>:
+                    <t t-esc="date_start"/>
+                    <strong>To</strong>:
+                    <t t-esc="date_end"/>
+                </h4>
+            </div>
+            <div class="article">
+                <table class="table table-condensed table-bordered" style="width: 100%">
+                    <thead>
+                        <th class="text-center" style="width: 15%">No Transaksi</th>
+                        <th class="text-center" style="width: 15%">Tanggal</th>
+                        <th class="text-center" style="width: 25%">Nama Cust.</th>
+                        <th class="text-center" colspan="2">Alamat</th>
+                        <th class="text-center" style="width: 20%">Total</th>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;">
+                                    <span t-esc="doc['number']"/>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                    <span t-esc="doc['date_invoice']"/>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                    <span t-esc="doc['partner_name']"/>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" colspan="3" class="text-left">
+
+                                </td>
+                            </tr>
+                            <tr t-foreach="doc['lines']" t-as="line">
+                                <td>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" colspan="2" class="text-left">
+                                    <span t-esc="line['product_name']"/>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                    <span t-esc="line['quantity']"/>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-right">
+                                    <span t-esc="line['price_unit']"/>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-right">
+                                    <span t-esc="line['price_subtotal']"/>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td style="white-space:nowrap;margin:0px;padding:0px;">
+                                    <span>Total</span>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" colspan="5" class="text-right">
+                                    <span t-esc="doc['amount_total']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer">
+                <div class="row text-center" style="border-top: 1px solid black;">
+                    <div class="col col-3 offset-9 text-right">
+                        <ul class="list-inline mt-2">
+                            <li class="list-inline-item">Page:</li>
+                            <li class="list-inline-item">
+                                <span class="page"/>
+                            </li>
+                            <li class="list-inline-item">/</li>
+                            <li class="list-inline-item">
+                                <span class="topage"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

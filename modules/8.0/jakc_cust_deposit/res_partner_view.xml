@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="jakc_project_0001_res_partner_inherit_view">
+            <field name="name">jakc.project.0001.res.partner.inherit.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='buttons']" position="inside">
+                    <button type="action"
+                        class="oe_stat_button"
+                        id="deposit_button"
+                        icon="fa-pencil-square-o"
+                        name="%(account.action_account_moves_all_tree)d"
+                        attrs="{'invisible': [('customer', '=', False)]}"
+                        context="{'search_default_partner_id': active_id,'default_partner_id': active_id}">
+                        <div><strong><field name="overpay" widget="monetary"/></strong><br/>Overpay</div>
+                    </button>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Deposits">
+                         <field name="cust_deposit_ids">
+                            <tree>
+                                <field name="name"/>
+                                <field name="trans_date"/>
+                                <field name="pricelist_id"/>
+                                <field name="rest_amount"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

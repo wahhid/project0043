@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_store,sale.order.store,model_sale_order,base.group_sale_store,1,1,0,0
+access_sale_order_line_store,sale.order.line.store,model_sale_order_line,base.group_sale_store,1,1,0,0

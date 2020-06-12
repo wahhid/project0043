@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="jakc_project_0001_account_invoice_inherit_view">
+            <field name="name">jakc.project.0001.account.invoice.inherit.view</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+         
+                <field name="currency_id" position="after">
+                    <field name="create_uid" attrs="{'readonly': 1}"/>
+                    <field name="write_uid" attrs="{'readonly': 1}"/>
+                </field>
+
+                <field name="fiscal_position" position="after">
+                    <field name="payment_method_id"/>
+                    <field name="printed_number"/>
+                    <field name="terbilang"/>
+                </field>
+
+                <field name="origin" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                </field>
+
+                <field name="move_id" position="after">
+                    <field name="no_tax_reference"/>
+                </field>
+
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_account_supplier_invoice_inherit">
+            <field name="name">account.supplier.invoice.inherit.view</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+         
+                <field name="partner_id" position="attributes">
+                        <attribute name="string">Partner</attribute>
+                </field>
+
+                <field name="partner_id" position="after">
+                    <field name="payment_method_id"/>
+                    <field name="printed_number"/>
+                    <field name="terbilang"/>
+                </field>
+
+                <field name="fiscal_position" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+
+                <field name="origin" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                </field>
+
+                <field name="account_id" position="after">
+                    <field name="create_uid" attrs="{'readonly': 1}"/>
+                    <field name="write_uid" attrs="{'readonly': 1}"/>
+                </field>
+
+                <field name="currency_id" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                </field>
+
+                <field name="move_id" position="after">
+                    <field name="no_tax_reference"/>
+                </field>
+
+                <field name="supplier_invoice_number" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+
+                <field name="reference_type" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="jakc_project_0001_account_invoice_inherit_tree_view">
+            <field name="name">jakc.project.0001.account.invoice.inherit.tree.view</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <field name="amount_total" position="after">
+                    <field name="printed_number"/>
+                    <field name="no_tax_reference"/>
+                </field>
+            </field>
+        </record>
+
+         <record model="ir.ui.view" id="view_account_invoice_filter_inherit">
+            <field name="name">account.invoice.inherit.filter</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                     <field name="no_tax_reference" string="No Faktur Pajak"/>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_cust_deposit_tree">
+        <field name="name">cust.deposit.tree</field>
+        <field name="model">customer.deposit</field>
+        <field name="arch" type="xml">
+            <tree colors="blue:state == 'open';gray:state == 'done';red:state == 'cancel'" string="Deposit Entries">
+                <field name="trans_date"/>
+                <field name="trans_number"/>
+                <field name="partner_id"/>
+                <field name="name"/>
+                <field name="rest_amount"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_cust_deposit_form">
+        <field name="name">cust.deposit.form</field>
+        <field name="model">customer.deposit</field>
+        <field name="arch" type="xml">
+            <form string="Customer Deposit">
+                <header>
+                    <button name="trans_confirm" string="Confirm" type="object" states="draft" confirm="Are you sure to confirm this transaction?"/>
+                    <button name="trans_re_open" string="Re-Open" type="object" states="done" confirm="Are you sure to re open this transaction?"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,open,done" statusbar_colors='{"open":"blue","post":"blue"}'/>
+                </header>
+                <sheet string="Customer Deposit">
+                    <group>
+                        <group>
+                            <field name="trans_number"/>
+                            <field name="name" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+                            <field name="partner_id" domain="[('customer','=',True)]" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+                            <field name="rest_amount"/>
+                        </group>
+                        <group>
+                            <field name="trans_date" attrs="{'readonly':[('state','!=', 'draft')]}" />
+                            <field name="pricelist_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Payments">
+                            <field name="payment_ids" attrs="{'readonly':[('state','=', 'draft')]}">
+                                <tree>
+                                    <field name="trans_date"/>
+                                    <field name="partner_id"/>
+                                    <field name="account_id"/>
+                                    <field name="method_type"/>
+                                    <field name="amount"/>
+                                    <field name="iface_generated"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Products">
+                            <field name="product_ids" attrs="{'readonly':[('state','=', 'draft')]}">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="type"/>
+                                    <field name="discount_type"/>
+                                    <field name="percentage"/>
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Partners">
+                            <field name="partner_ids" attrs="{'readonly':[('state','=', 'draft')]}">
+                                <tree>
+                                    <field name="partner_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Moves">
+                            <field name="account_move_ids" readonly='1'>
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="journal_id"/>
+                                    <field name="partner_id"/>
+                                    <field name="invoice_id"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_customer_deposit_search" model="ir.ui.view">
+        <field name="name">customer.deposit.search</field>
+        <field name="model">customer.deposit</field>
+        <field name="arch" type="xml">
+            <search string="Search Customer Deposit">
+                <field name="name" string="Name"/>
+                <field name="partner_id" string="Customer"/>
+                <field name="state"/>
+            </search>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_cust_deposit">
+        <field name="name">Deposit</field>
+        <field name="res_model">customer.deposit</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--
+    <menuitem id="menu_finance_customer_deposit" name="Customer Deposit" parent="account.menu_finance_receivables" sequence="99" groups="account.group_account_user,account.group_account_user"/>   
+    -->
+    
+    <menuitem action="action_cust_deposit" id="menu_action_cust_deposit" parent="account.menu_finance_receivables" sequence="200"/>
+
+    <record model="ir.ui.view" id="view_cust_deposit_product_form">
+        <field name="name">cust.deposit.product.form</field>
+        <field name="model">customer.deposit.product</field>
+        <field name="arch" type="xml">
+            <form string="Deposit Product">
+                 <sheet string="Deposit Product">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="type" widget="radio"/>
+                            <field name="product_id" attrs="{'invisible': [('type', '!=', 'product')], 'required':[('type', '=', 'product')]}"/>
+                            <field name="product_category_id" attrs="{'invisible': [('type', '!=', 'category')], 'required':[('type', '=', 'category')]}"/>
+                            <field name="product_merk_id" attrs="{'invisible': [('type', '!=', 'merk')], 'required':[('type', '=', 'merk')]}"/>
+                        </group>
+                        <group>
+                            <field name="discount_type" widget="radio"/>
+                            <field name="percentage" attrs="{'invisible': [('discount_type', '!=', 'percentage')], 'required':[('discount_type', '=', 'percentage')]}"/>
+                            <field name="amount"  attrs="{'invisible': [('discount_type', '!=', 'amount')], 'required':[('discount_type', '=', 'amount')]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_cust_deposit_partner_form">
+        <field name="name">cust.deposit.partner.form</field>
+        <field name="model">customer.deposit.partner</field>
+        <field name="arch" type="xml">
+            <form string="Deposit Partner">
+                 <sheet string="Deposit Partner">
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="view_cust_deposit_payment_form">
+        <field name="name">cust.deposit.payment.form</field>
+        <field name="model">customer.deposit.payment</field>
+        <field name="arch" type="xml">
+            <form string="Deposit Payment">
+                 <header>
+                      <button name="create_account_move" string="Confirm" type="object" states="open" confirm="Are you sure to confirm this transaction?"/>
+                      <button name="trans_reopen" string="Re-Open" type="object" states="done" confirm="Are you sure to re-open this transaction?"/>
+                      <field name="state" widget="statusbar" statusbar_visible="open,done" statusbar_colors='{"open":"blue"}'/>
+                  </header>
+                  <sheet string="Deposit Payment">
+                      <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="trans_date" attrs="{'readonly': [('state','=','done')]}"/>
+                                <field name="iface_generated" attrs="{'invisible': [('state','!=','done')]}"/>
+                            </group>
+                            <group>
+                                <field name="account_id" attrs="{'readonly': [('state','=','done')]}"/>
+                                <field name="method_type" attrs="{'readonly': [('state','=','done')]}"/>
+                                <field name="cheque_number" attrs="{'readonly': [('state','=','done')],'invisible': [('method_type','!=','cheque')], 'required':[('method_type','=','cheque')]}" />
+                                <field name="cheque_due_date" attrs="{'readonly': [('state','=','done')],'invisible': [('method_type','!=','cheque')], 'required':[('method_type','=','cheque')]}"/>
+                                <field name="amount" attrs="{'readonly': [('state','=','done')]}"/>
+                                <field name="journal_id" attrs="{'invisible': [('state','!=','done')]}" groups="account.group_account_user" domain="[('type','=','bank')]"/>
+                                <field name="account_move_id" attrs="{'invisible': [('state','!=','done')]}"/>
+                            </group>
+                      </group>
+                  </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

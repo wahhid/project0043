@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_account_invoice_validate" model="ir.ui.view">
+            <field name="name">Account Invoice Validate</field>
+            <field name="model">account.invoice.validate</field>
+            <field name="arch" type="xml">
+                <form string="Account Invoice Validate">
+                    <group>
+                        <label string="This customer have a open invoice. Do you want to continue?"/>
+                    </group>
+                    <footer>
+                        <button name="account_invoice_validate" string="Yes" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

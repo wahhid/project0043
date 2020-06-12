@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="0043_delivery_order_form_with_carrier" model="ir.ui.view">
+            <field name="name">0043.delivery.order.form.with.carrier</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="delivery.view_order_form_with_carrier"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='carrier_selection']" position="after">
+                    <field name="courier_id" domain="[('is_courier','=',True)]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

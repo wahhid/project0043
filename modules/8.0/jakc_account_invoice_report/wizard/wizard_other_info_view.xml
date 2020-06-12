@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="wizard_other_info_form" model="ir.ui.view">
+			<field name="name">wizard.other.info.form</field>
+			<field name="model">wizard.other.info</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Other Information">
+					<group col="2" colspan="2">
+						<field name="other_info_row1" />
+						<field name="other_info_row2" />
+						<field name="other_info_row3" />
+                        <field name="other_info_row4" />
+                        <newline />
+                    </group>
+					<footer>
+						<button string="Cancel" special="cancel" />
+                        <button name="process" string="Process" type="object" class="oe_highlight" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+        <record id="act_wizard_other_info" model="ir.actions.act_window">
+            <field name="name">Other Information</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.other.info</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+        </record>
+
+	</data>
+</openerp>

@@ -1,0 +1,3 @@
+import stock_transfer_details
+import stock_inventory
+import stock_return_picking

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <menuitem id="menu_finance_customer_deposit"
+                  name="Customer Deposit"
+                  parent="account.menu_finance"
+                  sequence="5"
+                  groups="account.group_account_user,account.group_account_manager"/>
+
+         <menuitem action="action_cust_deposit"
+                   id="menu_action_cust_deposit"
+                   parent="menu_finance_customer_deposit"
+                   sequence="1"/>
+    </data>
+</openerp>

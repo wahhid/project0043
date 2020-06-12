@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cust_deposit_salesman,cust.deposit.salesman,model_cust_deposit,base.group_sale_salesman,1,0,0,0
+access_cust_deposit_product_salesman,cust.deposit.product.salesman,model_cust_deposit_product,base.group_sale_salesman,1,0,0,0
+access_cust_deposit_partner_salesman,cust.deposit.partner.salesman,model_cust_deposit_partner,base.group_sale_salesman,1,0,0,0
+access_cust_deposit_payment_salesman,cust.deposit.payment.salesman,model_cust_deposit_payment,base.group_sale_salesman,1,0,0,0

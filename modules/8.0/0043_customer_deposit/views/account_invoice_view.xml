@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="0043_customer_deposit_invoice_form" model="ir.ui.view">
+            <field name="name">0043.customer.deposit.invoice_form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                
+                <button name="%(account.action_account_invoice_payment)d" position="replace">
+                    <button name="%(action_account_invoice_payment)d" attrs="{'invisible': [('is_deposit','=', True)]}" type="action" states="open" string="Register Payment" groups="account.group_account_invoice" class="oe_highlight"/>
+                </button>
+
+                <button name="%(account.action_account_invoice_payment)d" position="after">
+                    <button name="register_payment_using_deposit" attrs="{'invisible': [('is_deposit','=', False)]}" type="object" states="open" string="Register Payment" groups="account.group_account_invoice" class="oe_highlight" />
+                </button>
+
+                <field name="user_id" position="before">
+                    <field name="sale_order_id" readonly="1"/>
+                </field>
+            </field>
+        </record>
+
+        <!--
+        <record id="account.action_account_invoice_payment" model="ir.actions.act_window">
+            <field name="context">{'search_default_my_quotation': 1, 'default_is_deposit': parent.is_deposit}</field>
+        </record>
+        -->
+
+    </data>
+</odoo>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_wizard_account_invoice_payment_periode" model="ir.ui.view">
+            <field name="name">Wizard Account Invoice Payment Periode</field>
+            <field name="model">wizard.account.invoice.payment.periode</field>
+            <field name="arch" type="xml">
+                <form string="Account Invoice Payment Periode">
+                    <group col="4" string="Dates">
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                        <field name="type"/>
+                    </group>
+                    <footer>
+                        <button name="print_report" type="object" string="Print Report" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_report_account_invoice_payment_periode" model="ir.actions.act_window">
+            <field name="name">Payment Periode</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.account.invoice.payment.periode</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record> 
+
+        <menuitem 
+            id="menu_report_account_invoice_payment_periode" 
+            action="action_report_account_invoice_payment_periode"  
+            parent="account.menu_finance_reports" 
+            groups="account.group_account_user,account.group_account_manager" 
+            sequence="10"/>
+
+    </data>
+</openerp>

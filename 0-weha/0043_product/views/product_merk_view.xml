@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="view_product_merk_form" model="ir.ui.view">
+        <field name="name">product.merk.form</field>
+        <field name="model">product.merk</field>
+        <field name="arch" type="xml">
+            <form string="Product Merk">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_product_merk_tree" model="ir.ui.view">
+        <field name="name">product.merk.tree</field>
+        <field name="model">product.merk</field>
+        <field name="arch" type="xml">
+            <tree string="Product Merk">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_merk_search" model="ir.ui.view">
+        <field name="name">product.merk.search</field>
+        <field name="model">product.merk</field>
+        <field name="arch" type="xml">
+            <search string="Product Merk">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="product_merk_action" model="ir.actions.act_window">
+        <field name="name">Product Merk</field>
+        <field name="res_model">product.merk</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_product_merk_tree"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to set a product merk.</p>
+        </field>
+    </record>
+        
+    <menuitem id="product_merk_menu" name="Product Merks" action="product_merk_action"
+        parent="stock.menu_stock_inventory_control" sequence="10"/>
+
+</odoo>

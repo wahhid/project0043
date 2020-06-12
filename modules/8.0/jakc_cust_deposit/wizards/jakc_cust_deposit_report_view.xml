@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--   pos.details -->
+
+        <record id="view_jakc_cust_deposit_report_form_view" model="ir.ui.view">
+            <field name="name">Customer Deposit</field>
+            <field name="model">jakc.cust.deposit.report</field>
+            <field name="arch" type="xml">
+                <form string="Customer Deposit Report">
+                    <group>
+                         <field name="start_date"/>
+                         <field name="end_date"/>
+                         <field name="partner_ids" widget="many2many"/>
+                    </group>
+                    <footer>
+                        <button name="print_report" type="object" string="Print Report" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_report_cust_deposit" model="ir.actions.act_window">
+            <field name="name">Reports</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jakc.cust.deposit.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+    </data>
+</openerp>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="stock_picking_production_lot_invoice_form">
+        <field name="name">stock.picking.production.lot.invoice.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_line_ids_without_package']/tree/field[@name='product_id']" position="after">
+                <field name="lot_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

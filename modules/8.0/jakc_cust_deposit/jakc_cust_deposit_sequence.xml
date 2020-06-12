@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!--
+        Sequences types for Deposit
+        -->
+        <record model="ir.sequence.type" id="seq_type_cust_deposit">
+            <field name="name">Deposit</field>
+            <field name="code">deposit</field>
+        </record>
+
+        <!--
+        Sequences for Deposit
+        -->
+        <record model="ir.sequence" id="seq_cust_deposit">
+            <field name="name">Deposit</field>
+            <field name="code">deposit</field>
+            <field name="padding" eval="5"/>
+            <field name="prefix">DEP/</field>
+        </record>
+    </data>
+</openerp>
+

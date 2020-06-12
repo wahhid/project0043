@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="report.paperformat" id="paperformat_sale_item_report">
+        <field name="name">paperformat.sale.item.report</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_width">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">30</field>
+        <field name="margin_right">5</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report 
+        id="sale_item_report" 
+        model="sale.item.report.wizard" 
+        string="Sale Item Report" 
+        report_type="qweb-pdf" 
+        name="0043_sale.sale_item_report_view" 
+        paperformat="paperformat_sale_item_report" 
+        menu="False"/>
+
+    <template id="sale_item_report_view">
+        <t t-call="web.html_container">
+            <div class="header" style="border-bottom: 2px solid black">
+                <h3 class="text-center">LAPORAN PENJUALAN PER ITEM PER MERK</h3>
+                <h4 class="text-center">
+                    <strong>From</strong>:
+                    <t t-esc="date_start"/>
+                    <strong>To</strong>:
+                    <t t-esc="date_end"/>
+                </h4>
+            </div>
+            <div class="article">
+                <table class="table table-condensed table-bordered" style="width: 100%">
+                    <thead>
+                        <th class="text-center" style="width: 15%">Kode</th>
+                        <th class="text-center" style="width: 15%">Nama</th>
+                        <th class="text-center" style="width: 50%">Merk</th>
+                        <th class="text-center" style="width: 20%">Jenis</th>
+                        <th class="text-center" style="width: 20%">QTY</th>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;">
+                                    <span t-esc="doc['default_code']"/>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                    <span t-esc="doc['product_name']"/>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                    <span t-esc="doc['merk_name']"/>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                    <span t-esc="doc['size']"/>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                    <span t-esc="doc['total_item']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer">
+                <div class="row text-center" style="border-top: 1px solid black;">
+                    <div class="col col-3 offset-9 text-right">
+                        <ul class="list-inline mt-2">
+                            <li class="list-inline-item">Page:</li>
+                            <li class="list-inline-item">
+                                <span class="page"/>
+                            </li>
+                            <li class="list-inline-item">/</li>
+                            <li class="list-inline-item">
+                                <span class="topage"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <report 
+        id="sale_retur_item_report" 
+        model="sale.item.report.wizard" 
+        string="Sale Retur Item Report" 
+        report_type="qweb-pdf" 
+        name="0043_sale.sale_retur_item_report_view" 
+        paperformat="paperformat_sale_item_report" 
+        menu="False"/>
+
+    <template id="sale_retur_item_report_view">
+        <t t-call="web.html_container">
+            <div class="header" style="border-bottom: 2px solid black">
+                <h3 class="text-center">LAPORAN RETUR PENJUALAN PER ITEM PER MERK</h3>
+                <h4 class="text-center">
+                    <strong>From</strong>:
+                    <t t-esc="date_start"/>
+                    <strong>To</strong>:
+                    <t t-esc="date_end"/>
+                </h4>
+            </div>
+            <div class="article">
+                <table class="table table-condensed table-bordered" style="width: 100%">
+                    <thead>
+                        <th class="text-center" style="width: 15%">Kode</th>
+                        <th class="text-center" style="width: 15%">Nama</th>
+                        <th class="text-center" style="width: 50%">Merk</th>
+                        <th class="text-center" style="width: 20%">Jenis</th>
+                        <th class="text-center" style="width: 20%">QTY</th>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;">
+                                    <span t-esc="doc['default_code']"/>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                    <span t-esc="doc['product_name']"/>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                    <span t-esc="doc['merk_name']"/>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                    <span t-esc="doc['size']"/>
+                                </td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
+                                    <span t-esc="doc['total_item']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer">
+                <div class="row text-center" style="border-top: 1px solid black;">
+                    <div class="col col-3 offset-9 text-right">
+                        <ul class="list-inline mt-2">
+                            <li class="list-inline-item">Page:</li>
+                            <li class="list-inline-item">
+                                <span class="page"/>
+                            </li>
+                            <li class="list-inline-item">/</li>
+                            <li class="list-inline-item">
+                                <span class="topage"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+
+</odoo>

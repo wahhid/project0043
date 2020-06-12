@@ -1,0 +1,10 @@
+<openerp>
+    <data>
+        <menuitem 
+            id="menu_report_account_invoice_payment_periode" 
+            action="action_report_account_invoice_payment_periode"  
+            parent="account.menu_finance_reports" 
+            groups="account.group_account_user,account.group_account_manager" 
+            sequence="10"/>
+    </data>
+</openerp>

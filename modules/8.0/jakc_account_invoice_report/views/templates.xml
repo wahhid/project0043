@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<openerp>
+    <data>
+
+        <template id="jakc_account_invoice_report_minimal_layout" name="jakc_account_invoice_report assets" inherit_id="report.minimal_layout">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/jakc_account_invoice_report/static/src/css/jakc_account_invoice_report.css"/>
+            </xpath>
+        </template>
+
+    </data>
+</openerp>

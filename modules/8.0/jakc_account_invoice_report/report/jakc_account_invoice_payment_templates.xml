@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="account_voucher_periode_external_layout">
+            <!-- Multicompany -->
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+            <t t-call="jakc_account_voucher_report.account_voucher_periode_external_layout_header"/>
+            <t t-raw="0" />
+        </template>
+
+        <template id="account_voucher_periode_external_layout_header">
+            <div class="header">
+                <div class="row">
+                    <div class="col-xs-6" style="padding:0;margin:0;">
+                            <div class="col-xs-3">
+                                <div class="row">
+                                   <span><![CDATA[&nbsp;]]></span>
+                                </div>
+                                <img src='/jakc_account_voucher_report/static/src/img/bcp_logo.jpeg' style="max-height: 50px;"/>
+                            </div>
+                            <div class="col-xs-9">
+                                <div class="row">
+                                    <t t-if="data['form']['type'] == 'receipt'">
+                                        <span><strong>LAPORAN PEMBAYARAN HUTANG</strong></span>
+                                    </t>
+                                    <t t-if="data['form']['type'] == 'payment'">
+                                        <span><strong>LAPORAN PEMBAYARAN HUTANG</strong></span>
+                                    </t>
+                                </div>
+                                <div class="row">
+                                    <span t-esc="company.name"/>
+                                </div>
+                                <div class="row">
+                                    <span style="font-size:10px" t-esc="company.street"/>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template id="report_accountinvoicepaymentperiode_document">
+            <t t-call="jakc_account_invoice_report.account_voucher_periode_external_layout">
+                <div class="page">
+                    <div class="row">
+                        <table width="100%">
+                            <thead>
+                                <tr style="border-top:0.05pt solid black;border-bottom:0.05pt solid black;">
+                                    <th style="font-size:10px" ><strong>No Transaksi</strong></th>
+                                    <th style="font-size:10px" ><strong>Tanggal</strong></th>
+                                    <th style="font-size:10px" ><strong>Supplier</strong></th>
+                                    <th style="font-size:10px" ><strong>Cara Bayar</strong></th>
+                                    <th style="font-size:10px" ><strong>No Transaksi</strong></th>
+                                    <th style="font-size:10px" class="text-right"><strong>Potongan</strong></th>
+                                    <th style="font-size:10px" class="text-right"><strong>Jumlah Bayar</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="get_vouchers(data['form'])" t-as="voucher">
+                                    <tr>
+                                        <td style="font-size:10px"><span t-esc="voucher.get('number')"/></td>
+                                        <td style="font-size:10px"><span t-esc="voucher.get('date')"/></td>
+                                        <td style="font-size:10px"><span t-esc="voucher.get('partner_id')"/></td>
+                                        <td style="font-size:10px"><span t-esc="voucher.get('journal_id')"/></td>
+                                        <td style="font-size:10px"><span t-esc="voucher.get('number')"/></td>
+                                        <td style="font-size:10px"></td>
+                                        <td style="font-size:10px"><span t-esc="voucher.get('amount')"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="report_accountinvoicepaymentperiode">
+            <t t-call="report.html_container">
+                <t t-call="jakc_account_invoice_report.report_accountinvoicepaymentperiode_document"/>
+            </t>
+        </template>
+    </data>
+</openerp>

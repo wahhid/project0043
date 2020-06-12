@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="jakc_project_0001_stock_picking_form_inherit_view">
+            <field name="name">jakc.project.0001.stock.picking.form.inherit.view</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='min_date']" position="after">
+                    <field name="delivery_date"/>
+                </xpath>
+                <xpath expr="//header/button[5]" position="replace">
+                    <button name="do_enter_transfer_details" states="assigned,partially_available" string="Isi Lot" groups="stock.group_stock_user" type="object" class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//header/button[7]" position="replace">
+                    <button name="%(stock.act_stock_return_picking)d" string="Create Retur" states="done" type="action" groups="base.group_user"/>
+                </xpath>
+                <xpath expr="//header/button[8]" position="replace">
+                    <button name="action_cancel" states="assigned,confirmed,partially_available,draft,waiting" string="Cancel DO" groups="base.group_user" type="object"/>
+                </xpath>
+                <xpath expr="//notebook/page[1]/field[@name='move_lines']" position="replace">
+                    <field name="move_lines" context="{'address_in_id': partner_id, 'form_view_ref':'stock.view_move_picking_form', 'tree_view_ref':'stock.view_move_picking_tree', 'default_picking_type_id': picking_type_id,'default_picking_id': active_id}">
+                        <tree>
+                            <field name="product_id"/>
+                            <field name="product_uom_qty"/>
+                            <field name="product_uom"/>
+                            <field name="string_availability_info"/>
+                            <field name="state"/>
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//notebook/page[2]" position="replace">
+                    <page string="Lot" attrs="{'invisible': ['|', ('state','!=','done'), ('pack_operation_ids','=',[])]}">
+                        <field name="pack_operation_ids" context="{'default_picking_id': active_id, 'default_location_id': location_id, 'default_location_dest_id': location_dest_id}">
+                            <tree editable="top">
+                                <field name="package_id" groups="stock.group_tracking_lot"/>
+                                <field name="product_id" on_change="product_id_change(product_id, product_uom_id, product_qty)"/>
+                                <field name="product_uom_id" groups="product.group_uom"/>
+                                <field name="lot_id" domain="[('product_id','=?', product_id)]" context="{'product_id': product_id}" groups="stock.group_production_lot"/>
+                                <field name="picking_id" invisible="1"/>
+                                <field name="owner_id" groups="stock.group_tracking_owner"/>
+                                <field name="product_qty" attrs="{'required': [('product_id', '!=', False)]}"/>
+                                <field name="location_id" domain="[('id', 'child_of', parent.location_id)]"/>
+                                <field name="location_dest_id" domain="[('id', 'child_of', parent.location_dest_id)]"/>
+                                <field name="result_package_id" groups="stock.group_tracking_lot" context="{'location_id': location_dest_id}"/>
+                            </tree>
+                        </field>
+                        <p class="oe_grey" groups="stock.group_tracking_lot">
+                            If there is no product but a source package, this means the source package was moved entirely.  If there is a product and a source package, the product was taken from the source package.
+                        </p>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="jakc_project_0001_stock_inventory_form_inherit_view">
+            <field name="name">jakc.project.0001.stock.inventory.form.inherit.view</field>
+            <field name="model">stock.inventory</field>
+            <field name="inherit_id" ref="stock.view_inventory_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='filter']" position="after">
+                    <field name="total_qty_diff"/>
+                </xpath>
+
+                <xpath expr="//field[@name='prod_lot_id']" position="replace">
+                    <field name="prod_lot_id" string="LOT" on_change="onchange_createline(location_id, product_id, product_uom_id, package_id, prod_lot_id, partner_id)" domain="[('product_id', '=', product_id)]" context="{'default_product_id': product_id}"  groups="stock.group_production_lot"/>
+                </xpath>
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='package_id']" position="replace">
+                    <field name="package_id" invisible="True" domain="['|', ('location_id','=', False), ('location_id', '=', location_id)]" on_change="onchange_createline(location_id, product_id, product_uom_id, package_id, prod_lot_id, partner_id)" groups="stock.group_tracking_lot"/>
+                </xpath>
+
+                <xpath expr="//field[@name='product_qty']" position="replace">
+                    <field name="product_qty" string="Hsl Opname"/>
+                </xpath>
+
+                <xpath expr="//field[@name='product_qty']" position="after">
+                    <field name="qty_diff" string="Selisih"/>
+                </xpath>
+                <xpath expr="//field[@name='theoretical_qty']" position="replace">
+                    <field name="theoretical_qty" string="Stok Komputer" readonly="1"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_stock_quant_tree2">
+            <field name="name">stock.quant.tree2</field>
+            <field name="model">stock.quant</field>
+            <field eval="10" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Quants" create="0" delete="0">
+                    <field name="product_id"/>
+                    <field name="location_id"/>
+                    <field name="lot_id" groups="stock.group_production_lot"/>
+                    <field name="qty"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_stock_quant_search2" model="ir.ui.view">
+            <field name="name">stock.quant.search2</field>
+            <field name="model">stock.quant</field>
+            <field eval="10" name="priority"/>
+            <field name="arch" type="xml">
+                <search string="Quants">
+                    <field name="product_id"/>
+                    <field name="location_id"/>
+                    <group expand='0' string='Filters'>
+                        <filter name='internal_loc' string="Internal Locations" domain="[('location_id.usage','=', 'internal')]"/>
+                    </group>
+                    <group expand='0' string='Group by...'>
+                       <filter name="productgroup" string='Product' context="{'group_by' : 'product_id'}"/>
+                       <filter name="lot_id" string='Lot' context="{'group_by' : 'lot_id'}" groups="stock.group_production_lot"/>
+                   </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_stock_quant_tree2" model="ir.actions.act_window">
+            <field name="name">Quants</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.quant</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_stock_quant_tree2"/>
+            <field name="search_view_id" ref="view_stock_quant_search2"/>
+        </record>
+        
+    </data>
+</openerp>

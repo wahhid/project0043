@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Receipt -->
+        <record id="view_vendor_receipt_dialog_deposit_form" model="ir.ui.view">
+            <field name="name">account.voucher.form.receipt.dialog.deposit.inherit</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_receipt_dialog_form"/>
+            <field name="arch" type="xml">
+                <field name="journal_id" position="after">
+                    <field name="iface_deposit"/>
+                    <field name="deposit" 
+                           widget="monetary"
+                           attrs="{'invisible':[('iface_deposit','=', False)]}"/>
+                    <field name="cust_deposit_id" 
+                           on_change="onchange_deposit(cust_deposit_id, journal_id, line_cr_ids, False, partner_id, date, amount, type, company_id, context)" 
+                           attrs="{'invisible':[('iface_deposit','=', False)], 'required': [('iface_deposit','=', True)]}"/>
+                    <field name="overpay" widget="monetary"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,22 @@
+{
+    'name' : 'Jakc Labs - Account Invoice Report Enhancement',
+    'version' : '1.0',
+    'author' : 'Jakc Labs',
+    'category' : 'Generic Modules/Account Invoice',
+    'depends' : ['account', 'account_voucher', 'account_invoice_production_lot', 'jakc_account_invoice'],
+    'init_xml' : [],
+    'data' : [
+        'wizard/wizard_other_info_view.xml',
+        'wizard/wizard_report_account_invoice_payment_periode.xml',
+        'views/report_view.xml',
+        'views/res_company_view.xml',
+        'views/account_invoice_view.xml',
+        'views/templates.xml',
+        'jakc_account_invoice_report.xml',
+        'report/jakc_account_invoice_payment_templates.xml',
+        'report/jakc_account_invoice_payment.xml',
+    ],
+    'installable': True,
+    'auto_install': False,
+    'application': True,
+}

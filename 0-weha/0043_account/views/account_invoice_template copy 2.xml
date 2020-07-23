@@ -50,21 +50,25 @@
                                     <span style="font-size:9px">NPWP : </span>
                                     <span style="font-size:9px" t-esc="company.vat"/>
                                 </div>
-                                <div class="row">
-                                    <span style="font-size:9px">WA1 : </span>
-                                    <span style="font-size:9px" t-esc="company.wa1"/>
-                                    <span style="font-size:9px"> / WA2 : </span>
-                                    <span style="font-size:9px" t-esc="company.wa2"/>
+                                <div class="row" style="margin-bottom:0px !important;">
+                                    <div class="col-12" style="padding: 0 !important;">
+                                        <span style="font-size:9px">WA1 : </span>
+                                        <span style="font-size:9px" t-esc="company.wa1"/>
+                                        <span style="font-size:9px"> / WA2 : </span>
+                                        <span style="font-size:9px" t-esc="company.wa2"/>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <span style="font-size:9px" t-esc="o.create_uid.name"/>
-                                    <span style="font-size:9px"> P-</span>
-                                    <span style="font-size:9px" t-esc="o.printed_number"/>
-                                    <span style="font-size:9px">/</span>
-                                    <span style="font-size:9px" class="page"/>
-                                    <span style="font-size:9px">of</span>
-                                    <span style="font-size:9px" class="topage"/>
-                                    <span style="font-size:9px"></span>
+                                    <div class="col-12" style="padding: 0 !important;">
+                                        <span style="font-size:9px" t-esc="o.create_uid.name"/>
+                                        <span style="font-size:9px"> P-</span>
+                                        <span style="font-size:9px" t-esc="o.printed_number"/>
+                                        <span style="font-size:9px">/</span>
+                                        <span style="font-size:9px" class="page"/>
+                                        <span style="font-size:9px">of</span>
+                                        <span style="font-size:9px" class="topage"/>
+                                        <span style="font-size:9px"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -183,70 +187,64 @@
                         </div>
                     </div>
                     <div class="col-6" style="padding:0;margin:0;">
-                        <div class="row">
-                            <div class="col-4">
+                        <div class="row m-0 p-0" style="padding:0;margin:0;">
+                            <div class="col-4 m-0 p-0">
                                 <t t-if="o.type == 'out_invoice'">
-                                    <span style="font-size:9px">
+                                    <span style="font-size:9px;padding:0;margin:0;">
                                         <strong>Tgl Faktur</strong>
                                     </span>
                                 </t>
                                 <t t-if="o.type == 'in_invoice'">
-                                    <span style="font-size:9px">
+                                    <span style="font-size:9px;padding:0;margin:0;">
                                         <strong>Tgl Faktur</strong>
                                     </span>
                                 </t>
                                 <t t-if="o.type == 'out_refund'">
-                                    <span style="font-size:9px">
+                                    <span style="font-size:9px;padding:0;margin:0;">
                                         <strong>Tgl Refund</strong>
                                     </span>
                                 </t>
                                 <t t-if="o.type == 'in_refund'">
-                                    <span style="font-size:9px">
+                                    <span style="font-size:9px;padding:0;margin:0;">
                                         <strong>Tgl Refund</strong>
                                     </span>
                                 </t>
                             </div>
-                            <div class="col-8">
+                            <div class="col-8 m-0 p-0" style="padding:0;margin:0;">
                                 <t t-if="o.date_invoice">
-                                    <span style="font-size:9px" t-field="o.date_invoice"/>
+                                    <span style="font-size:9px;padding:0;margin:0;" t-field="o.date_invoice"/>
                                 </t>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-4">
+                        <div class="row m-0 p-0" style="padding:0;margin:0;">
+                            <div class="col-4 m-0 p-0" style="padding:0;margin:0;">
                                 <t t-if="o.type == 'out_invoice'">
-                                    <span style="font-size:9px">
+                                    <span style="font-size:9px;padding:0;margin:0;">
                                         <strong>No. Faktur</strong>
                                     </span>
                                 </t>
                                 <t t-if="o.type == 'in_invoice'">
-                                    <span style="font-size:9px">
+                                    <span style="font-size:9px;padding:0;margin:0;">
                                         <strong>No. Faktur</strong>
                                     </span>
                                 </t>
                                 <t t-if="o.type == 'out_refund'">
-                                    <span style="font-size:9px">
+                                    <span style="font-size:9px;padding:0;margin:0;">
                                         <strong>No. Refund</strong>
                                     </span>
                                 </t>
                                 <t t-if="o.type == 'in_refund'">
-                                    <span style="font-size:9px">
+                                    <span style="font-size:9px;padding:0;margin:0;">
                                         <strong>No. Refund</strong>
                                     </span>
                                 </t>
                             </div>
-                            <div class="col-8">
-                                <span style="font-size:9px" t-esc="o.number"/>
+                            <div class="col-8 m-0 p-0" style="padding:0;margin:0;">
+                                <span style="font-size:9px;padding:0;margin:0;" t-esc="o.number"/>
                                 <t t-if="o.sale_order_id">
-                                    <span style="font-size:9px">/</span>
-                                    <span style="font-size:9px" t-esc="o.sale_order_id.name"/>
+                                    <span style="font-size:9px;padding:0;margin:0;">/</span>
+                                    <span style="font-size:9px;padding:0;margin:0;" t-esc="o.sale_order_id.name"/>
                                 </t>
-                                <!--
-                                <t t-if="len(o.picking_ids) > 0">
-                                    <span style="font-size:9px">/</span>
-                                    <span style="font-size:9px" t-esc="o.picking_ids[0].name"/>
-                                </t>
-                                -->
                             </div>
                         </div>
                         <div class="row" t-if="o.type == 'out_refund'">
@@ -550,18 +548,6 @@
                                 <div class="row">
                                     <div class="col-6" style="padding:0;margin:0;">
                                         <span style="font-size:9px">
-                                            <strong><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>PPN 10%</strong>
-                                        </span>
-                                    </div>
-                                    <div class="col-6" style="padding:0;margin:0;">
-                                        <strong>
-                                            <span class="pull-right" style="font-size:9px" t-esc="'{:,.0f}'.format(int(o.amount_tax)).replace(',', 'X').replace('.', ',').replace('X', '.')"/>
-                                        </strong>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6" style="padding:0;margin:0;">
-                                        <span style="font-size:9px">
                                             <strong><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>Total Akhir</strong>
                                         </span>
                                     </div>
@@ -697,8 +683,8 @@
                                                 </td>
 
                                                 <td style="white-space:nowrap;" class="text-right">
-                                                    <span style="font-size:9px" t-field="l.price_subtotal"/>
-                                                    <t t-set="rowsubtotal" t-value="rowsubtotal + l.price_subtotal"/>
+                                                    <span style="font-size:9px" t-field="l.price_total"/>
+                                                    <t t-set="rowsubtotal" t-value="rowsubtotal + l.price_total"/>
                                                 </td>
                                             </tr>
                                         </t>

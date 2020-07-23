@@ -6,9 +6,9 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <field name="property_payment_term_id">
+                <xpath expr="//group[@name='sale']/field[@name='customer']" position="after">
                     <field name="res_partner_payment_method_id"/>
-                </field>
+                </xpath>
             </field>
         </record>
     </data>

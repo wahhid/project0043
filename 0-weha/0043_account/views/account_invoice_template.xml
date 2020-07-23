@@ -30,367 +30,305 @@
                         <div class="row" t-if="o.type == 'out_invoice'">
                             <div class="col-3">
                                 <div class="row">
-                                    <span><![CDATA[&nbsp;]]></span>
+                                   <span><![CDATA[&nbsp;]]></span>
                                 </div>
                                 <img src='/0043_account/static/src/img/bcp_logo.jpeg' style="max-height: 60px;"/>
                             </div>
                             <div class="col-9">
                                 <div class="row">
-                                    <span>
-                                        <strong>FAKTUR PENJUALAN</strong>
-                                    </span>
+                                    <div class="col">
+                                        <div class="m-0 p-0" style="font-size:10px;"><strong>FAKTUR PENJUALAN</strong></div>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <span t-esc="company.name"/>
+                                    <div class="col">
+                                        <div class="m-0 p-0" style="font-size:10px;" t-esc="company.name"/>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <span style="font-size:10px" t-esc="company.street"/>
+                                    <div class="col">
+                                        <div class="m-0 p-0" style="font-size:9px;" t-esc="company.street"/>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <span style="font-size:10px">NPWP : </span>
-                                    <span style="font-size:10px" t-esc="company.vat"/>
+                                    <div class="col">
+                                        <div class="m-0 p-0" style="font-size:9px;">NPWP :  <t t-esc="company.vat"/></div>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <span style="font-size:10px">WA1 : </span>
-                                    <span style="font-size:10px" t-esc="company.wa1"/>
-                                    <span style="font-size:10px"> / WA2 : </span>
-                                    <span style="font-size:10px" t-esc="company.wa2"/>
+                                    <div class="col" >
+                                        <div class="m-0 p-0" style="font-size:9px">
+                                            WA1 : <t t-esc="company.wa1"/> / WA2 : <t t-esc="company.wa2"/>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <span style="font-size:10px" t-esc="o.create_uid.name"/>
-                                    <span style="font-size:10px"> P-</span>
-                                    <span style="font-size:10px" t-esc="o.printed_number"/>
-                                    <span style="font-size:10px">/</span>
-                                    <span style="font-size:10px" class="page"/>
-                                    <span style="font-size:10px">of</span>
-                                    <span style="font-size:10px" class="topage"/>
-                                    <span style="font-size:10px"></span>
+                                    <div class="col">
+                                        <div class="m-0 p-0" style="font-size:9px">
+                                            <t t-esc="o.create_uid.name"/> P-<t t-esc="o.printed_number"/> / 
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row" t-if="o.type == 'in_invoice'">
                             <div class="col-3">
                                 <div class="row">
-                                    <span><![CDATA[&nbsp;]]></span>
+                                   <span><![CDATA[&nbsp;]]></span>
                                 </div>
                                 <img src='/0043_account/static/src/img/bcp_logo.jpeg' style="max-height: 60px;"/>
                             </div>
                             <div class="col-9">
                                 <div class="row">
-                                    <span>
-                                        <strong>FAKTUR PEMBELIAN</strong>
-                                    </span>
+                                    <span><strong>FAKTUR PEMBELIAN</strong></span>
                                 </div>
                                 <div class="row">
                                     <span t-esc="company.name"/>
                                 </div>
                                 <div class="row">
-                                    <span style="font-size:10px" t-esc="company.street"/>
+                                    <span style="font-size:9px" t-esc="company.street"/>
                                 </div>
                                 <div class="row">
-                                    <span style="font-size:10px">NPWP : </span>
-                                    <span style="font-size:10px" t-esc="company.vat"/>
+                                    <span style="font-size:9px">NPWP : </span><span style="font-size:9px" t-esc="company.vat"/>
                                 </div>
                                 <div class="row">
-                                    <span style="font-size:10px">WA1 : </span>
-                                    <span style="font-size:10px" t-esc="company.wa1"/>
-                                    <span style="font-size:10px"> / WA2 : </span>
-                                    <span style="font-size:10px" t-esc="company.wa2"/>
+                                    <span style="font-size:9px">WA1 : </span>
+                                    <span style="font-size:9px" t-esc="company.wa1"/>
+                                    <span style="font-size:9px"> / WA2 : </span>
+                                    <span style="font-size:9px" t-esc="company.wa2"/>
                                 </div>
                                 <div class="row">
-                                    <span style="font-size:10px" t-esc="o.create_uid.name"/>
-                                    <span style="font-size:10px"> P-</span>
-                                    <span style="font-size:10px" t-esc="o.printed_number"/>
-                                    <span style="font-size:10px">/</span>
-                                    <span style="font-size:10px" class="page"/>
-                                    <span style="font-size:10px">of</span>
-                                    <span style="font-size:10px" class="topage"/>
-                                    <span style="font-size:10px"></span>
+                                    <span style="font-size:9px" t-esc="o.create_uid.name"/>
+                                    <span style="font-size:9px"> P-</span><span style="font-size:9px" t-esc="o.printed_number"/> <span style="font-size:9px">/</span> <span style="font-size:9px" class="page"/> <span  style="font-size:9px">of</span> <span style="font-size:9px" class="topage"/>
+                                    <span style="font-size:9px">   </span>
                                 </div>
                             </div>
                         </div>
                         <div class="row" t-if="o.type == 'out_refund'">
                             <div class="col-3">
                                 <div class="row">
-                                    <span><![CDATA[&nbsp;]]></span>
+                                   <span><![CDATA[&nbsp;]]></span>
                                 </div>
                                 <img src='/0043_account/static/src/img/bcp_logo.jpeg' style="max-height: 60px;"/>
                             </div>
                             <div class="col-9">
                                 <div class="row">
                                     <div class="col-12">
-                                        <span>
-                                            <strong><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>REFUND PENJUALAN</strong>
-                                        </span>
+                                        <span><strong><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>REFUND PENJUALAN</strong></span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <span><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]></span>
-                                        <span t-esc="company.name"/>
+                                        <span><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]></span><span t-esc="company.name"/>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <span style="font-size:10px"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]></span>
-                                        <span style="font-size:10px" t-esc="o.create_uid.name"/>
-                                        <span style="font-size:10px"> P-</span>
-                                        <span style="font-size:10px" t-esc="o.printed_number"/>
-                                        <span style="font-size:10px">/</span>
-                                        <span style="font-size:10px" class="page"/>
-                                        <span style="font-size:10px">of</span>
-                                        <span style="font-size:10px" class="topage"/>
-                                        <span style="font-size:10px"></span>
+                                        <span style="font-size:9px"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]></span>
+                                        <span style="font-size:9px" t-esc="o.create_uid.name"/>
+                                        <span style="font-size:9px"> P-</span><span style="font-size:9px" t-esc="o.printed_number"/> <span style="font-size:9px">/</span> <span style="font-size:9px" class="page"/> <span  style="font-size:9px">of</span> <span style="font-size:9px" class="topage"/>
+                                        <span style="font-size:9px">   </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row" t-if="o.type == 'in_refund'">
-                            <div class="col-3">
+                            <div class="col-xs-3">
                                 <div class="row">
-                                    <span><![CDATA[&nbsp;]]></span>
+                                   <span><![CDATA[&nbsp;]]></span>
                                 </div>
                                 <img src='/0043_account/static/src/img/bcp_logo.jpeg' style="max-height: 60px;"/>
                             </div>
-                            <div class="col-9">
+                            <div class="col-xs-9">
                                 <div class="row">
-                                    <div class="col-12">
-                                        <span>
-                                            <strong><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>REFUND PENJUALAN</strong>
-                                        </span>
+                                    <div class="col-xs-12">
+                                        <span><strong><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>REFUND PENJUALAN</strong></span>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12">
-                                        <span><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]></span>
-                                        <span t-esc="company.name"/>
+                                    <div class="col-xs-12">
+                                        <span><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]></span><span t-esc="company.name"/>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12">
-                                        <span style="font-size:10px"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]></span>
-                                        <span style="font-size:10px" t-esc="o.create_uid.name"/>
-                                        <span style="font-size:10px"> P-</span>
-                                        <span style="font-size:10px" t-esc="o.printed_number"/>
-                                        <span style="font-size:10px">/</span>
-                                        <span style="font-size:10px" class="page"/>
-                                        <span style="font-size:10px">of</span>
-                                        <span style="font-size:10px" class="topage"/>
-                                        <span style="font-size:10px"></span>
+                                    <div class="col-xs-12">
+                                        <span style="font-size:9px"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]></span>
+                                        <span style="font-size:9px" t-esc="o.create_uid.name"/>
+                                        <span style="font-size:9px"> P-</span><span style="font-size:9px" t-esc="o.printed_number"/> <span style="font-size:9px">/</span> <span style="font-size:9px" class="page"/> <span  style="font-size:9px">of</span> <span style="font-size:9px" class="topage"/>
+                                        <span style="font-size:9px">   </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-6" style="padding:0;margin:0;">
-                        <div class="row m-0 p-0" style="padding:0;margin:0;">
-                            <div class="col-4 m-0 p-0">
-                                <t t-if="o.type == 'out_invoice'">
-                                    <span style="font-size:10px;padding:0;margin:0;">
-                                        <strong>Tgl Faktur</strong>
-                                    </span>
-                                </t>
-                                <t t-if="o.type == 'in_invoice'">
-                                    <span style="font-size:10px;padding:0;margin:0;">
-                                        <strong>Tgl Faktur</strong>
-                                    </span>
-                                </t>
-                                <t t-if="o.type == 'out_refund'">
-                                    <span style="font-size:10px;padding:0;margin:0;">
-                                        <strong>Tgl Refund</strong>
-                                    </span>
-                                </t>
-                                <t t-if="o.type == 'in_refund'">
-                                    <span style="font-size:10px;padding:0;margin:0;">
-                                        <strong>Tgl Refund</strong>
-                                    </span>
-                                </t>
+                        <div class="row">
+                                <div class="col-4">
+                                    <t t-if="o.type == 'out_invoice'">
+                                         <div class="m-0 p-0" style="font-size:9px"><strong>Tgl Faktur</strong></div>
+                                    </t>
+                                    <t t-if="o.type == 'in_invoice'">
+                                         <div class="m-0 p-0" style="font-size:9px"><strong>Tgl Faktur</strong></div>
+                                    </t>
+                                    <t t-if="o.type == 'out_refund'">
+                                         <div style="font-size:9px"><strong>Tgl Refund</strong></div>
+                                    </t>
+                                    <t t-if="o.type == 'in_refund'">
+                                         <div style="font-size:9px"><strong>Tgl Refund</strong></div>
+                                    </t>
+                                </div>
+                                <div class="col-8">
+                                    <t t-if="o.date_invoice">
+                                        <div class="m-0 p-0" style="font-size:9px"  t-field="o.date_invoice"/>
+                                    </t>
+                                </div>
                             </div>
-                            <div class="col-8 m-0 p-0" style="padding:0;margin:0;">
-                                <t t-if="o.date_invoice">
-                                    <span style="font-size:10px;padding:0;margin:0;" t-field="o.date_invoice"/>
-                                </t>
+                        <div class="row">
+                                <div class="col-4">
+                                    <t t-if="o.type == 'out_invoice'">
+                                        <div class="m-0 p-0" style="font-size:9px"><strong>No. Faktur</strong></div>
+                                    </t>
+                                    <t t-if="o.type == 'in_invoice'">
+                                        <div style="font-size:9px"><strong>No. Faktur</strong></div>
+                                    </t>
+                                    <t t-if="o.type == 'out_refund'">
+                                        <div style="font-size:9px"><strong>No. Refund</strong></div>
+                                    </t>
+                                    <t t-if="o.type == 'in_refund'">
+                                        <div style="font-size:9px"><strong>No. Refund</strong></div>
+                                    </t>
+                                </div>
+                                <div class="col-8">
+                                    <div class="m-0 p-0" style="font-size:9px">
+                                        <t t-esc="o.number"/>
+                                        <t t-if="o.sale_order_id">
+                                            / <t t-esc="o.sale_order_id.name"/>
+                                        </t>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row m-0 p-0" style="padding:0;margin:0;">
-                            <div class="col-4 m-0 p-0" style="padding:0;margin:0;">
-                                <t t-if="o.type == 'out_invoice'">
-                                    <span style="font-size:10px;padding:0;margin:0;">
-                                        <strong>No. Faktur</strong>
-                                    </span>
-                                </t>
-                                <t t-if="o.type == 'in_invoice'">
-                                    <span style="font-size:10px;padding:0;margin:0;">
-                                        <strong>No. Faktur</strong>
-                                    </span>
-                                </t>
-                                <t t-if="o.type == 'out_refund'">
-                                    <span style="font-size:10px;padding:0;margin:0;">
-                                        <strong>No. Refund</strong>
-                                    </span>
-                                </t>
-                                <t t-if="o.type == 'in_refund'">
-                                    <span style="font-size:10px;padding:0;margin:0;">
-                                        <strong>No. Refund</strong>
-                                    </span>
-                                </t>
-                            </div>
-                            <div class="col-8 m-0 p-0" style="padding:0;margin:0;">
-                                <span style="font-size:10px;padding:0;margin:0;" t-esc="o.number"/>
-                                <t t-if="o.sale_order_id">
-                                    <span style="font-size:10px;padding:0;margin:0;">/</span>
-                                    <span style="font-size:10px;padding:0;margin:0;" t-esc="o.sale_order_id.name"/>
-                                </t>
-                            </div>
-                        </div>
                         <div class="row" t-if="o.type == 'out_refund'">
-                            <div class="col-4">
-                                <span style="font-size:10px">
-                                    <strong>No. Faktur</strong>
-                                </span>
-                            </div>
-                            <div class="col-8">
-                                <span style="font-size:10px" t-esc="o.origin"/>
-                            </div>
-                        </div>
+                                <div class="col-4">
+                                    <div class="m-0 p-0" style="font-size:9px"><strong>No. Faktur</strong></div>
+                                </div>
+                                <div class="col-8">
+                                    <div class="m-0 p-0" style="font-size:9px" t-esc="o.origin"/>
+                                </div>
+                         </div>
                         <div class="row" t-if="o.type == 'in_refund'">
-                            <div class="col-4">
-                                <span style="font-size:10px">
-                                    <strong>No. Faktur</strong>
-                                </span>
-                            </div>
-                            <div class="col-8">
-                                <span style="font-size:10px" t-esc="o.origin"/>
-                            </div>
-                        </div>
+                                <div class="col-4">
+                                    <span style="font-size:9px"><strong>No. Faktur</strong></span>
+                                </div>
+                                <div class="col-8">
+                                    <span style="font-size:9px" t-esc="o.origin"/>
+                                </div>
+                         </div>
+
                         <div class="row" t-if="o.type == 'out_invoice'">
-                            <div class="col-4">
-                                <span style="font-size:10px">
-                                    <strong>Pelanggan</strong>
-                                </span>
+                                <div class="col-4">
+                                    <div class="m-0 p-0" style="font-size:9px"><strong>Pelanggan</strong></div>
+                                </div>
+                                <div class="col-8">
+                                    <div class="m-0 p-0" style="font-size:9px" t-field="o.partner_id.name"/>
+                                </div>
                             </div>
-                            <div class="col-8">
-                                <span style="font-size:10px" t-field="o.partner_id.name"/>
-                            </div>
-                        </div>
                         <div class="row" t-if="o.type == 'out_invoice'">
-                            <div class="col-4">
-                                <span style="font-size:10px">
-                                    <strong>Alamat Pelanggan</strong>
-                                </span>
-                            </div>
-                            <div class="col-8">
-                                <t t-if="o.partner_id.street">
-                                    <span style="font-size:10px" t-esc="o.partner_id.street[0:100]"/>
-                                </t>
-                            </div>
+                                <div class="col-4">
+                                    <div class="m-0 p-0" style="font-size:9px"><strong>Alamat Pelanggan</strong></div>
+                                </div>
+                                <div class="col-8">
+                                    <t t-if="o.partner_id.street">
+                                        <div class="m-0 p-0" style="font-size:9px" t-esc="o.partner_id.street[0:100]"/>
+                                    </t>
+                                </div>
                         </div>
 
                         <div class="row" t-if="o.type == 'out_refund'">
-                            <div class="col-4">
-                                <span style="font-size:10px">
-                                    <strong>Pelanggan</strong>
-                                </span>
-                            </div>
-                            <div class="col-8">
-                                <span style="font-size:10px" t-field="o.partner_id.name"/>
-                            </div>
+                                <div class="col-4">
+                                    <span style="font-size:9px"><strong>Pelanggan</strong></span>
+                                </div>
+                                <div class="col-8">
+                                    <span style="font-size:9px" t-field="o.partner_id.name"/>
+                                </div>
                         </div>
                         <div class="row" t-if="o.type == 'out_refund'">
-                            <div class="col-4">
-                                <span style="font-size:10px">
-                                    <strong>Alamat Pelanggan</strong>
-                                </span>
-                            </div>
-                            <div class="col-8">
-                                <t t-if="o.partner_id.street">
-                                    <span style="font-size:10px" t-esc="o.partner_id.street[0:100]"/>
-                                </t>
-                            </div>
+                                <div class="col-4">
+                                    <span style="font-size:9px"><strong>Alamat Pelanggan</strong></span>
+                                </div>
+                                <div class="col-8">
+                                    <t t-if="o.partner_id.street">
+                                        <span style="font-size:9px" t-esc="o.partner_id.street[0:100]"/>
+                                    </t>
+                                </div>
                         </div>
 
                         <div class="row" t-if="o.type == 'in_invoice'">
-                            <div class="col-4">
-                                <span style="font-size:10px">
-                                    <strong>Supplier</strong>
-                                </span>
+                                <div class="col-4">
+                                    <span style="font-size:9px"><strong>Supplier</strong></span>
+                                </div>
+                                <div class="col-8">
+                                    <span style="font-size:9px" t-field="o.partner_id.name"/>
+                                </div>
                             </div>
-                            <div class="col-8">
-                                <span style="font-size:10px" t-field="o.partner_id.name"/>
-                            </div>
-                        </div>
                         <div class="row" t-if="o.type == 'in_invoice'">
-                            <div class="col-4">
-                                <span style="font-size:10px">
-                                    <strong>Alamat Supplier</strong>
-                                </span>
-                            </div>
-                            <div class="col-8">
-                                <t t-if="o.partner_id.street">
-                                    <span style="font-size:10px" t-esc="o.partner_id.street[0:100]"/>
-                                </t>
-                            </div>
+                                <div class="col-4">
+                                    <span style="font-size:9px"><strong>Alamat Supplier</strong></span>
+                                </div>
+                                <div class="col-8">
+                                    <t t-if="o.partner_id.street">
+                                        <span style="font-size:9px" t-esc="o.partner_id.street[0:100]"/>
+                                    </t>
+                                </div>
                         </div>
 
                         <div class="row" t-if="o.type == 'in_refund'">
-                            <div class="col-4">
-                                <span style="font-size:10px">
-                                    <strong>Supplier</strong>
-                                </span>
+                                <div class="col-4">
+                                    <span style="font-size:9px"><strong>Supplier</strong></span>
+                                </div>
+                                <div class="col-8">
+                                    <span style="font-size:9px" t-field="o.partner_id.name"/>
+                                </div>
                             </div>
-                            <div class="col-8">
-                                <span style="font-size:10px" t-field="o.partner_id.name"/>
-                            </div>
-                        </div>
                         <div class="row" t-if="o.type == 'in_refund'">
-                            <div class="col-4">
-                                <span style="font-size:10px">
-                                    <strong>Alamat Supplier</strong>
-                                </span>
-                            </div>
-                            <div class="col-8">
-                                <t t-if="o.partner_id.street">
-                                    <span style="font-size:10px" t-esc="o.partner_id.street[0:100]"/>
-                                </t>
-                            </div>
+                                <div class="col-4">
+                                    <span style="font-size:9px"><strong>Alamat Supplier</strong></span>
+                                </div>
+                                <div class="col-8">
+                                    <t t-if="o.partner_id.street">
+                                        <span style="font-size:9px" t-esc="o.partner_id.street[0:100]"/>
+                                    </t>
+                                </div>
+                        </div>
+
+
+                        <div class="row">
+                                <div class="col-4">
+                                    <div class="m-0 p-0" style="font-size:9px"><strong>Kota / Provinsi</strong></div>
+                                </div>
+                                <div class="col-8">
+                                    <div  class="m-0 p-0" style="font-size:9px"> 
+                                        <t t-if="o.partner_id.city">
+                                            <t t-esc="o.partner_id.city"/> 
+                                        </t>
+                                        / 
+                                        <t t-if="o.partner_id.state_id">
+                                            <t t-esc="o.partner_id.state_id.name"/>
+                                        </t>
+                                    </div>
+                                </div>
                         </div>
                         <div class="row">
                             <div class="col-4">
-                                <span style="font-size:10px">
-                                    <strong>Kota / Provinsi</strong>
-                                </span>
+                                <t t-if="o.type == 'out_invoice'">
+                                    <div class="m-0 p-0" style="font-size:9px"><strong>Cara Bayar</strong></div>
+                                </t>
+                                <t t-if="o.type == 'out_refund'">
+                                    <div class="m-0 p-0" style="font-size:9px"><strong>Cara Refund</strong></div>
+                                </t>
                             </div>
                             <div class="col-8">
-                                <t t-if="o.partner_id.city">
-                                    <span style="font-size:10px" t-field="o.partner_id.city"/>
-                                    <span style="font-size:10px"> / </span>
-                                </t>
-                                <t t-if="o.partner_id.state_id">
-                                    <span style="font-size:10px" t-field="o.partner_id.state_id"/>
-                                </t>
+                                <div class="m-0 p-0" style="font-size:9px" t-esc="o.partner_id.res_partner_payment_method_id.name"/>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4" t-if="o.type == 'out_invoice'">
-                                <span style="font-size:10px">
-                                    <strong>Cara Bayar</strong>
-                                </span>
-                            </div>
-                            <div class="col-4" t-if="o.type == 'out_refund'">
-                                <span style="font-size:10px">
-                                    <strong>Cara Refund</strong>
-                                </span>
-                            </div>
-                            <!--
-                            <div class="col-xs-8" t-if="o.type == 'out_invoice'">
-                                <t t-if="not o.payment_method">
-                                    <span style="font-size:10px" t-esc="o.partner_id.payment_method_id.name"/>
-                                </t>
-                                <t t-if="o.payment_method">
-                                    <span style="font-size:10px" t-esc="o.payment_method"/>
-                                </t>
-                            </div>
-                            -->
                         </div>
                     </div>
                 </div>
@@ -411,9 +349,11 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="row">
-                            <span style="font-size:10px">Terbilang : </span>
-                            <span style="font-size:10px" t-esc="o.terbilang"/>
-                            <span style="font-size:10px"> Rupiah</span>
+                            <div class="col-12" style="padding:0;margin:0;">
+                                <div  style="font-size:9px">
+                                    Terbilang : <t t-esc="o.terbilang"/>  Rupiah
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <span><![CDATA[&nbsp;]]></span>
@@ -421,7 +361,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="row">
-                                    <span style="font-size:10px">
+                                    <span style="font-size:9px">
                                         <strong>Hormat Kami</strong>
                                     </span>
                                 </div>
@@ -432,25 +372,14 @@
                                     <span><![CDATA[&nbsp;]]></span>
                                 </div>
                                 <div class="row">
-                                    <span><![CDATA[&nbsp;]]></span>
-                                </div>
-                                <div class="row">
-                                    <span><![CDATA[&nbsp;]]></span>
-                                </div>
-                                <div class="row">
-                                    <span><![CDATA[&nbsp;]]></span>
-                                </div>
-                                <div class="row">
-                                    <span style="font-size:10px">
-                                        <strong>(...................)</strong>
-                                    </span>
+                                    <span style="font-size:9px"><strong>(...................)</strong></span>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="row">
-                                    <span style="font-size:10px">
-                                        <strong>Penerima</strong>
-                                    </span>
+                                    <div class="col">
+                                        <span style="font-size:9px"><strong>Penerima</strong></span>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <span><![CDATA[&nbsp;]]></span>
@@ -459,18 +388,7 @@
                                     <span><![CDATA[&nbsp;]]></span>
                                 </div>
                                 <div class="row">
-                                    <span><![CDATA[&nbsp;]]></span>
-                                </div>
-                                <div class="row">
-                                    <span><![CDATA[&nbsp;]]></span>
-                                </div>
-                                <div class="row">
-                                    <span><![CDATA[&nbsp;]]></span>
-                                </div>
-                                <div class="row">
-                                    <span style="font-size:10px">
-                                        <strong>(...................)</strong>
-                                    </span>
+                                    <span style="font-size:9px"><strong>(...................)</strong></span>
                                 </div>
                             </div>
                         </div>
@@ -479,26 +397,29 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="row">
-                                    <div class="col-6" style="padding:0;margin:0;">
-                                        <strong>
-                                            <span style="font-size:10px;">Total Barang</span>
-                                        </strong>
+                                    <div class="col-6"  style="padding:0;margin:0;">
+                                        <div style="font-size:9px;">
+                                            <strong>Total Barang</strong>
+                                        </div>
                                     </div>
-                                    <div class="col-6" style="padding:0;margin:0;">
-                                        <strong class="pull-right">
-                                            <span style="font-size:10px" t-esc="int(quantity)"/>
-                                            <span style="font-size:10px"> Item                                                <![CDATA[&nbsp;]]></span>
-                                        </strong>
+                                    <div class="col-6 text-right"  style="padding:0;margin:0;">
+                                        <div style="font-size:9px;">
+                                            <strong>
+                                                <t t-esc="int(quantity)"/> Item
+                                            </strong>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <span><![CDATA[&nbsp;]]></span>
+                                    <div style="font-size:9px;">
+                                        <![CDATA[&nbsp;]]>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12" style="padding:0;margin:0;">
-                                        <span style="font-size:10px">
+                                        <div style="font-size:9px;">
                                             <strong>Keterangan:</strong>
-                                        </span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -506,51 +427,56 @@
                                         <table>
                                             <tr>
                                                 <td height="35">
-                                                    <p style="font-size:10px">
+                                                    <div class="m-0 p-0" style="font-size:9px">
                                                         <t t-esc="o.comment"/>
-                                                    </p>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         </table>
-
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="row">
-                                    <div class="col-6" style="padding:0;margin:0;">
-                                        <strong>
-                                            <span style="font-size:10px;"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>Sub Total</span>
-                                        </strong>
+                                    <div class="col-6" style="padding:0;margin:0">
+                                        <div style="font-size:9px;">
+                                            <strong class="text-right">Sub Total</strong>
+                                        </div>
                                     </div>
-                                    <div class="col-6" style="padding:0;margin:0;">
-                                        <strong>
-                                            <span class="pull-right" style="font-size:10px" t-esc="'{:,.0f}'.format(int(rowsubtotal)).replace(',', 'X').replace('.', ',').replace('X', '.')"/>
-                                        </strong>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6" style="padding:0;margin:0;">
-                                        <span style="font-size:10px">
-                                            <strong><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>Potongan</strong>
-                                        </span>
-                                    </div>
-                                    <div class="col-6" style="padding:0;margin:0;">
-                                        <strong>
-                                            <span class="pull-right" style="font-size:10px" t-esc="'{:,.0f}'.format(int(o.discount_total)).replace(',', 'X').replace('.', ',').replace('X', '.')"/>
-                                        </strong>
+                                    <div class="col-6  text-right" style="padding:0;margin:0">
+                                        <div style="font-size:9px;">
+                                            <strong>
+                                                <t t-esc="'{:,.0f}'.format(int(rowsubtotal)).replace(',', 'X').replace('.', ',').replace('X', '.')"/>
+                                            </strong>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-6" style="padding:0;margin:0;">
-                                        <span style="font-size:10px">
-                                            <strong><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>Total Akhir</strong>
-                                        </span>
+                                    <div class="col-6" style="padding:0;margin:0">
+                                        <div style="font-size:9px;">
+                                            <strong>Potongan</strong>
+                                        </div>
                                     </div>
-                                    <div class="col-6" style="padding:0;margin:0;">
-                                        <strong>
-                                            <span class="pull-right" style="font-size:10px" t-esc="'{:,.0f}'.format(int(o.amount_total)).replace(',', 'X').replace('.', ',').replace('X', '.')"/>
-                                        </strong>
+                                    <div class="col-6  text-right" style="padding:0;margin:0">
+                                        <div style="font-size:9px;">
+                                            <strong>
+                                                <t t-esc="'{:,.0f}'.format(int(o.discount_total)).replace(',', 'X').replace('.', ',').replace('X', '.')"/>
+                                            </strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6" style="padding:0;margin:0">
+                                        <div style="font-size:9px;">
+                                            <strong>Total</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-6  text-right" style="padding:0;margin:0">
+                                        <div style="font-size:9px;">
+                                            <strong>
+                                                <t t-esc="'{:,.0f}'.format(int(o.amount_total)).replace(',', 'X').replace('.', ',').replace('X', '.')"/>
+                                            </strong>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row" t-if="o.type == 'out_invoice'">
@@ -560,45 +486,57 @@
                                             <t t-set="payment_total" t-value="payment_total + move_line.credit"/>
                                         </t>
                                     </t>
-                                    <div class="col-6" style="padding:0;margin:0;">
-                                        <span style="font-size:10px">
-                                            <strong><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>Bayar Tunai</strong>
-                                        </span>
+                                    <div class="col-6" style="padding:0;margin:0">
+                                        <div style="font-size:9px;">
+                                            <strong>Bayar</strong>
+                                        </div>
                                     </div>
-                                    <div class="col-6" style="padding:0;margin:0;">
-                                        <strong>
-                                            <span class="pull-right" style="font-size:10px" t-esc="'{:,.0f}'.format(int(payment_total)).replace(',', 'X').replace('.', ',').replace('X', '.')"/>
-                                        </strong>
+                                    <div class="col-6 text-right" style="padding:0;margin:0">
+                                        <div style="font-size:9px;">
+                                            <strong>
+                                                <t t-esc="'{:,.0f}'.format(int(payment_total)).replace(',', 'X').replace('.', ',').replace('X', '.')"/>
+                                            </strong>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row" t-if="o.type == 'out_invoice'">
-                                    <div class="col-6" style="padding:0;margin:0;">
-                                        <span style="font-size:10px">
-                                            <strong><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]]>Sisa</strong>
-                                        </span>
+                                    <div class="col-6" style="padding:0;margin:0">
+                                        <div style="font-size:9px;">
+                                            <strong>Sisa</strong>
+                                        </div>
                                     </div>
-                                    <div class="col-6" style="padding:0;margin:0;">
-                                        <strong>
-                                            <span class="pull-right" style="font-size:10px" t-esc="'{:,.0f}'.format(int(o.residual)).replace(',', 'X').replace('.', ',').replace('X', '.')"/>
-                                        </strong>
+                                    <div class="col-6  text-right" style="padding:0;margin:0">
+                                        <div style="font-size:9px;">
+                                            <strong>
+                                                <t t-esc="'{:,.0f}'.format(int(o.residual)).replace(',', 'X').replace('.', ',').replace('X', '.')"/>
+                                            </strong>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12" t-if="o.type == 'out_invoice'">
+                            <div class="col-12" style="padding:0;margin:0;" t-if="o.type == 'out_invoice'">
                                 <ul>
-                                    <li style="font-size:10px" t-if="company.other_info_row1">
-                                        <span t-esc="company.other_info_row1"/>
+                                    <li style="font-size:9px" t-if="company.other_info_row1">
+                                        <div class="m-0 p-0">
+                                            <t t-esc="company.other_info_row1"/>
+                                        </div>
                                     </li>
-                                    <li style="font-size:10px" t-if="company.other_info_row2">
-                                        <span t-esc="company.other_info_row2"/>
+                                    <li style="font-size:9px" t-if="company.other_info_row2">
+                                        <div class="m-0 p-0">
+                                            <t t-esc="company.other_info_row2"/>
+                                        </div>
                                     </li>
-                                    <li style="font-size:10px" t-if="company.other_info_row3">
-                                        <span t-esc="company.other_info_row3"/>
+                                    <li style="font-size:9px" t-if="company.other_info_row3">
+                                        <div class="m-0 p-0">
+                                            <t t-esc="company.other_info_row3"/>
+                                        </div>
                                     </li>
-                                    <li style="font-size:10px" t-if="company.other_info_row4">
-                                        <span t-esc="company.other_info_row4"/>
+                                    <li style="font-size:9px" t-if="company.other_info_row4">
+                                       <div class="m-0 p-0">
+                                            <t t-esc="company.other_info_row4"/>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
@@ -610,38 +548,36 @@
         </template>
 
         <template id="report_invoice_small_document">
-                <!--
-                <t t-set="o" t-value="o.with_context(lang=lang)" />
-                -->
                 <t t-call="0043_account.external_layout">
-                        <div class="article">
+                    <div class="article">
+                        <div class="col-12" style="padding:0;margin:0;">
                             <table width="100%">
                                 <thead>
                                     <tr>
-                                        <th width="3%" style=" border-top: 0.5px solid black;border-bottom: 0.5px solid black;border-collapse: collapse;">
-                                            <span style="font-size:10px">No</span>
+                                        <th width="3%" style="border-top: 1px solid black;border-bottom: 1px solid black;border-collapse: collapse; padding:0;margin:0;">
+                                            <span style="font-size:9px">No</span>
                                         </th>
-                                        <th width="10%" style=" border-top: 0.5px solid black;border-bottom: 0.5px solid black;border-collapse: collapse;">
-                                            <span style="font-size:10px">Kode Item</span>
+                                        <th width="15%" style="border-top: 1px solid black;border-bottom: 1px solid black;border-collapse: collapse; padding:0;margin:0;">
+                                            <span style="font-size:9px">Kode Item</span>
                                         </th>
-                                        <th width="7%" style=" border-top: 0.5px solid black;border-bottom: 0.5px solid black;border-collapse: collapse;">
-                                            <span style="font-size:10px">Lot</span>
+                                        <th width="7%" style="border-top: 1px solid black;border-bottom: 1px solid black;border-collapse: collapse; padding:0;margin:0;">
+                                            <span style="font-size:9px">Lot</span>
                                         </th>
-                                        <th style="border-top: 0.5px solid black;border-bottom: 0.5px solid black;border-collapse: collapse;">
-                                            <span style="font-size:10px">Nama Item</span>
+                                        <th style="border-top: 1px solid black;border-bottom: 1px solid black;border-collapse: collapse; padding:0;margin:0;">
+                                            <span style="font-size:9px">Nama Item</span>
                                         </th>
-                                        <th width="5%" style=" border-top: 0.5px solid black;border-bottom: 0.5px solid black;border-collapse: collapse;">
-                                            <span style="font-size:10px">Jml</span>
+                                        <th width="5%" style=" border-top: 1px solid black;border-bottom: 1px solid black;border-collapse: collapse; padding:0;margin:0;">
+                                            <span style="font-size:9px">Jml</span>
                                         </th>
-                                        <th width="10%" class="text-right" style=" border-top: 0.5px solid black;border-bottom: 0.5px solid black;border-collapse: collapse;">
-                                            <span style="font-size:10px">Harga</span>
+                                        <th width="10%" class="text-right" style="border-top: 1px solid black;border-bottom: 1px solid black;border-collapse: collapse; padding:0;margin:0;">
+                                            <span style="font-size:9px">Harga</span>
                                         </th>
-                                        <th width="14%" class="text-right" style=" border-top: 0.5px solid black;border-bottom: 0.5px solid black;border-collapse: collapse;">
-                                            <span style="font-size:10px">Total</span>
+                                        <th width="14%" class="text-right" style="border-top: 1px solid black;border-bottom: 1px solid black;border-collapse: collapse; padding:0;margin:0;">
+                                            <span style="font-size:9px">Total</span>
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="invoice_tbody">
                                     <t t-set="no" t-value="0"/>
                                     <t t-set="rowrepeat" t-value="0"/>
                                     <t t-set="rowsubtotal" t-value="0"/>
@@ -652,34 +588,40 @@
                                             <t t-set="rowrepeat" t-value="rowrepeat + 1"/>
                                             <tr>
                                                 <td style="white-space:nowrap;">
-                                                    <span style="font-size:10px" t-esc="no"/>
+                                                    <div class="m-0 p-0" style="font-size:9px">
+                                                        <t t-esc="no"/>
+                                                    </div>
                                                 </td>
                                                 <td style="white-space:nowrap;">
-                                                    <span style="font-size:10px" t-field="l.product_id.default_code"/>
+                                                    <div class="m-0 p-0" style="font-size:9px"> 
+                                                        <t t-esc="l.product_id.default_code"/>
+                                                    </div>
                                                 </td>
                                                 <td style="white-space:nowrap;">
-                                                    <span style="font-size:10px"/>
+                                                    <div class="m-0 p-0" style="font-size:9px"/>
                                                 </td>
                                                 <td style="overflow:hidden;white-space:nowrap;">
-                                                    <span style="font-size:10px" t-field="l.product_id.name"/>
-                                                    <span style="font-size:10px"> - </span>
-                                                    <span style="font-size:10px" t-field="l.product_id.warna"/>
-                                                    <span style="font-size:10px"> - </span>
-                                                    <span style="font-size:10px" t-field="l.product_id.motif"/>
-                                                    <span style="font-size:10px"> - </span>
-                                                    <span style="font-size:10px" t-field="l.product_id.page"/>
+                                                    <div class="m-0 p-0" style="font-size:9px">
+                                                        <t t-esc="l.product_id.name"/> - <t t-esc="l.product_id.warna"/> - <t t-esc="l.product_id.motif"/> - <t t-esc="l.product_id.page"/>
+                                                    </div>
                                                 </td>
                                                 <td style="white-space:nowrap;">
-                                                    <span style="font-size:10px" t-esc="int(l.quantity)"/>
-                                                    <t t-set="quantity" t-value="quantity + l.quantity"/>
-                                                    <span style="font-size:10px" t-field="l.uos_id" groups="product.group_uom"/>
+                                                    <div class="m-0 p-0" style="font-size:9px">
+                                                        <t t-esc="int(l.quantity)"/> <t t-esc="l.uom_id.name"/>
+                                                        <t t-set="quantity" t-value="quantity + l.quantity"/>
+                                                    </div>
+                        
                                                 </td>
                                                 <td style="white-space:nowrap;" class="text-right">
-                                                    <span style="font-size:10px" t-field="l.price_unit"/>
+                                                    <div class="m-0 p-0" style="font-size:9px">
+                                                        <span t-field="l.price_unit"/>
+                                                    </div>
                                                 </td>
 
                                                 <td style="white-space:nowrap;" class="text-right">
-                                                    <span style="font-size:10px" t-field="l.price_total"/>
+                                                    <div class="m-0 p-0" style="font-size:9px">
+                                                        <span t-field="l.price_total"/>
+                                                    </div>
                                                     <t t-set="rowsubtotal" t-value="rowsubtotal + l.price_total"/>
                                                 </td>
                                             </tr>
@@ -688,6 +630,7 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
                 </t>
         </template>
 

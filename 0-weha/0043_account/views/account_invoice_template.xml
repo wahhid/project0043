@@ -338,15 +338,6 @@
         <template id="external_layout_footer">
             <div class="footer">
                 <div class="row">
-                    <table width="100%">
-                        <tr style="border-top: 0.5pt solid black;">
-                            <td>
-                                <span style="font-size:6px"><![CDATA[&nbsp;]]></span>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="row">
                     <div class="col-6">
                         <div class="row">
                             <div class="col-12" style="padding:0;margin:0;">

@@ -94,6 +94,7 @@ class ReturnPicking(models.TransientModel):
             'procure_method': 'make_to_stock',
         }
         return vals
+    
     def _create_returns(self):
         # TODO sle: the unreserve of the next moves could be less brutal
         for return_move in self.product_return_moves.mapped('move_id'):

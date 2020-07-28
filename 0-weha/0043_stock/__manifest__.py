@@ -3,16 +3,18 @@
     "summary": "Stock Enhancement for Project 0043",
     "version": "12.0.1.0.0",
     "author": "Wahyu Hidayat, "
-              "WAHE",
-    "category": "Sales",
-    "website": "https://www.jakc-labs.com",
+              "WEHA",
+    "category": "Stock",
+    "website": "https://www.weha-id.com",
     "license": "AGPL-3",
     'data': [
         'wizards/stock_picking_return_view.xml',
+        'views/stock_picking_report.xml',
+        'views/stock_picking_templates.xml',
         'views/stock_view.xml',
     ],
     "depends": [
-        "stock",
+        "stock","stock_move_quick_lot"
     ],
     "installable": True,
 }

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="picking_courier_external_layout">
+            <!-- Multicompany -->
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+            <t t-call="jakc_stock_report.picking_courier_external_layout_header"/>
+            <t t-raw="0" />
+        </template>
+
+         <template id="picking_courier_external_layout_header">
+            <div class="header">
+                <div class="row">
+                    <div class="col-xs-6" style="padding:0;margin:0;">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div class="row">
+                                    <span style="font-size:6px"><![CDATA[&nbsp;]]></span>
+                                </div>
+                                 <div class="row">
+                                    <span style="font-size:6px"><![CDATA[&nbsp;]]></span>
+                                </div>
+                                <img src='/jakc_stock_report/static/src/img/bcp_logo.jpeg' style="max-height: 60px;"/>
+                            </div>
+                            <div class="col-xs-9">
+                                <div class="row">
+                                    <strong><span>LAPORAN KURIR</span></strong>
+                                </div>
+                                <div class="row">
+                                    <span t-esc="company.name"/>
+                                </div>
+                                <div class="row">
+                                    <span style="font-size:10px" t-esc="company.street"/>
+                                </div>
+                                <div class="row">
+                                    <span style="font-size:10px">NPWP : </span><span style="font-size:10px" t-esc="company.vat"/>
+                                </div>
+                                <div class="row">
+                                    <span style="font-size:10px">WA1 : </span>
+                                    <span style="font-size:10px" t-esc="company.wa1"/>
+                                    <span style="font-size:10px"> / WA2 : </span>
+                                    <span style="font-size:10px" t-esc="company.wa2"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+         <template id="report_picking_courier">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="jakc_stock_report.picking_courier_external_layout">
+                        <style>
+                            thead { display: table-header-group }
+                            tfoot { display: table-row-group }
+                            tr { page-break-inside: avoid }
+                        </style>
+                        <div class="page">
+                            <div class="row">
+                                <table width="100%" t-if="not o.pack_operation_ids">
+                                    <thead>
+                                        <tr style="border-top:0.05pt solid black;border-bottom:0.05pt solid black;">
+                                            <th><span style="font-size:10px"><strong>No</strong></span></th>
+                                            <th><span style="font-size:10px"><strong>Kode Item</strong></span></th>
+                                            <th><span style="font-size:10px"><strong>Lot</strong></span></th>
+                                            <th><span style="font-size:10px"><strong>Nama Item</strong></span></th>
+                                            <th class="text-right"><span style="font-size:10px"><strong>Jumlah</strong></span></th>
+                                            <t t-if="o.picking_type_id.code != 'outgoing' and o.iface_return != True">
+                                                <th>
+                                                    <span style="font-size:10px"><strong>Destination</strong></span>
+                                                </th>
+                                            </t>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="no" t-value="0"/>
+                                        <t t-set="quantity" t-value="0"/>
+                                        <tr t-foreach="o.move_lines.sorted(key=lambda r: r.product_id.name)" t-as="move">
+                                            <t t-set="no" t-value="no + 1"/>
+                                            <t t-if="(o.state != 'partially_available') or (move.reserved_availability > 0)">
+                                                <td><span style="font-size:10px" t-esc="no"/></td>
+                                                <td>
+                                                    <span style="font-size:10px" t-field="move.product_id.default_code"/>
+                                                </td>
+                                                    <td>
+                                                        <t t-if="len(move.reserved_quant_ids) > 0">
+                                                            <span style="font-size:10px" t-field="move.reserved_quant_ids[0].lot_id"/>
+                                                        </t>
+                                                        <t t-if="len(move.quant_ids) > 0">
+                                                            <span style="font-size:10px" t-field="move.quant_ids[0].lot_id"/>
+                                                        </t>
+                                                    </td>
+                                                <td>
+                                                    <span style="font-size:10px" t-field="move.product_id.name"/> -
+                                                    <span style="font-size:10px" t-field="move.product_id.merk_id"/> -
+                                                    <span style="font-size:10px" t-field="move.product_id.warna"/> -
+                                                    <span style="font-size:10px" t-field="move.product_id.page"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <t t-if="o.state == 'partially_available'">
+                                                        <t t-set="quantity" t-value="quantity + move.reserved_availability"/>
+                                                        <span style="font-size:10px" t-esc="int(move.reserved_availability)"/> <span t-field="move.product_id.uom_id" groups="product.group_uom"/>
+                                                    </t>
+                                                    <t t-if="o.state != 'partially_available'">
+                                                        <t t-set="quantity" t-value="quantity + move.product_uom_qty"/>
+                                                        <span style="font-size:10px" t-esc="int(move.product_uom_qty)"/> <span style="font-size:10px" t-field="move.product_uom" groups="product.group_uom"/>
+                                                    </t>
+                                                </td>
+                                                <t t-if="o.picking_type_id.code != 'outgoing' and o.iface_return != True">
+                                                    <td>
+                                                        <span style="font-size:10px" t-field="move.location_dest_id"/>
+                                                    </td>
+                                                </t>
+                                            </t>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table width="100%" t-if="o.pack_operation_ids">
+                                  <thead>
+                                    <tr style="border-top:0.05pt solid black;border-bottom:0.05pt solid black;">
+                                        <th><span style="font-size:10px"><strong>No</strong></span></th>
+                                        <th><span style="font-size:10px"><strong>Kode Item</strong></span></th>
+                                            <th>
+                                                <span style="font-size:10px"><strong>Lot</strong></span>
+                                            </th>
+                                        <th><span style="font-size:10px"><strong>Nama Item</strong></span></th>
+                                        <th class="text-right"><span style="font-size:10px"><strong>Jumlah</strong></span></th>
+                                        <t t-if="o.picking_type_id.code != 'outgoing' and o.iface_return != True"><th><span style="font-size:10px"><strong>Destination</strong></span></th></t>
+                                    </tr>
+                                  </thead>
+                                    <tbody>
+                                        <t t-set="no" t-value="0"/>
+                                        <t t-set="quantity" t-value="0"/>
+                                        <tr t-foreach="o.pack_operation_ids.sorted(key=lambda r: r.product_id.name)" t-as="pack_operation">
+                                            <t t-set="no" t-value="no + 1"/>
+                                            <td><span style="font-size:10px" t-esc="no"/></td>
+                                            <td>
+                                                <span style="font-size:10px" t-field="pack_operation.product_id.default_code"/>
+                                            </td>
+                                                <td>
+                                                    <span style="font-size:10px" t-if="pack_operation.lot_id" t-field="pack_operation.lot_id"/>
+                                                </td>
+                                            <td>
+                                                 <span style="font-size:10px" t-field="pack_operation.product_id.name"/> -
+                                                <span style="font-size:10px" t-field="pack_operation.product_id.merk_id"/> -
+                                                <span style="font-size:10px" t-field="pack_operation.product_id.warna"/> -
+                                                <span style="font-size:10px" t-field="pack_operation.product_id.page"/>
+                                                <t t-if="not pack_operation.product_id and pack_operation.package_id">
+                                                    <span style="font-size:10px" t-field="pack_operation.package_id"/>
+                                                </t>
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-set="quantity" t-value="quantity + pack_operation.product_qty"/>
+                                                <span style="font-size:10px" t-esc="int(pack_operation.product_qty)"/>
+                                                <span style="font-size:10px" t-field="pack_operation.product_uom_id" groups="product.group_uom"/>
+                                            </td>
+                                            <t t-if="o.picking_type_id.code != 'outgoing' and o.iface_return != True"><td><span t-field="pack_operation.location_dest_id"/>
+                                                <span style="font-size:10px" t-if="pack_operation.result_package_id">:</span>
+                                                <span style="font-size:10px" t-field="pack_operation.result_package_id"/>
+                                            </td></t>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                 </t>
+             </t>
+        </template>
+    </data>
+</openerp>

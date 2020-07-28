@@ -29,6 +29,7 @@
         <t t-call="web.html_container">
             <div class="header" style="border-bottom: 2px solid black">
                 <h3 class="text-center">LAPORAN PENJUALAN PER AREA</h3>
+                <h4 class="text-center">PT.BERKAT CIPTA PAPERA</h4>
                 <h4 class="text-center">
                     <strong>From</strong>:
                     <t t-esc="date_start"/>

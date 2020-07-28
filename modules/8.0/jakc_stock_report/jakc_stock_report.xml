@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            string="Picking Custom"
+            id="action_report_picking_custom"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            name="jakc_stock_report.report_picking_custom"
+            file="jakc_stock_report.report_picking_custom"
+        />
+
+        <report
+            string="Picking Dropshipping"
+            id="action_report_picking_custom_dropshipping"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            name="jakc_stock_report.report_picking_custom_dropshipping"
+            file="jakc_stock_report.report_picking_custom_dropshipping"
+        />
+
+        <report
+            string="Picking Checking"
+            id="action_report_picking_custom_checking"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            name="jakc_stock_report.report_picking_custom_checking"
+            file="jakc_stock_report.report_picking_custom_checking"
+        />
+
+        <record id="paperformat_picking_custom" model="report.paperformat">
+            <field name="name">Picking Custom Format</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">140</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">35</field>
+            <field name="margin_bottom">50</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">30</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="jakc_stock_report.action_report_picking_custom" model="ir.actions.report.xml">
+                <field name="paperformat_id" ref="jakc_stock_report.paperformat_picking_custom"/>
+        </record>
+
+        <record id="jakc_stock_report.action_report_picking_custom_dropshipping" model="ir.actions.report.xml">
+                <field name="paperformat_id" ref="jakc_stock_report.paperformat_picking_custom"/>
+        </record>
+
+        <record id="jakc_stock_report.action_report_picking_custom_checking" model="ir.actions.report.xml">
+                <field name="paperformat_id" ref="jakc_stock_report.paperformat_picking_custom"/>
+        </record>
+
+
+    </data>
+</openerp>

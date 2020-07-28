@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="jakc_stock_report_stock_picking_form_inherit_view">
+            <field name="name">jakc.stock.report.stock.picking.form.inherit.view</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="courier"/>
+                    <field name="printed_number"/>
+                    <field name="iface_return"/>
+                </field>
+               <xpath expr="//header/field[@name='state']" position="before">
+                   <button name="trans_print_do" string="Print Retur" type="object" attrs="{'invisible':['|',('iface_return','=', False),('state','not in',('assigned','done'))]}"/>
+                   <button name="trans_print_checking" string="Print Cek Stok" type="object" attrs="{'invisible':['|',('iface_return','=', True),('state','not in',('assigned','done'))]}"/>
+                   <button name="trans_print_do" string="Print DO/SJ" type="object" attrs="{'invisible':['|',('iface_return','=', True),('state','not in',('assigned','done'))]}"/>
+                   <button name="trans_print_dropshipping" string="Print Dropshipping" type="object" attrs="{'invisible':['|',('iface_return','=', True),('state','not in',('assigned','done'))]}"/>
+               </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

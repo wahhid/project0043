@@ -16,6 +16,7 @@
     "depends": [
         "account",
         "abs_total_discount_invoice",
+        "stock_picking_invoice_link",
     ],
     "external_dependencies": {"python" : ["num2words"]},
     "installable": True,

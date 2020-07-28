@@ -15,6 +15,7 @@
                         <field name="other_info_row2"/>
                         <field name="other_info_row3"/>
                         <field name="other_info_row4"/>
+                        <field name="other_info_row5"/>
                     </group>
                 </group>
             </field>

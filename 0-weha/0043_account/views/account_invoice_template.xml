@@ -362,7 +362,7 @@
                             <div class="col-6">
                                 <div class="row">
                                     <span style="font-size:10px">
-                                        <strong>Hormat Kami</strong>
+                                        <strong>&#160;Hormat Kami</strong>
                                     </span>
                                 </div>
                                 <div class="row">
@@ -372,14 +372,14 @@
                                     <span><![CDATA[&nbsp;]]></span>
                                 </div>
                                 <div class="row">
-                                    <span style="font-size:10px"><strong>(...................)</strong></span>
+                                    <span style="font-size:10px"><strong>(&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;)</strong></span>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="row">
-                                    <div class="col">
-                                        <span style="font-size:10px"><strong>Penerima</strong></span>
-                                    </div>
+                                    
+                                    <span style="font-size:10px"><strong>&#160;Penerima</strong></span>
+ 
                                 </div>
                                 <div class="row">
                                     <span><![CDATA[&nbsp;]]></span>
@@ -388,7 +388,7 @@
                                     <span><![CDATA[&nbsp;]]></span>
                                 </div>
                                 <div class="row">
-                                    <span style="font-size:10px"><strong>(...................)</strong></span>
+                                    <span style="font-size:10px"><strong>(&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;)</strong></span>
                                 </div>
                             </div>
                         </div>
@@ -452,11 +452,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <!--
+                                    
                                     <div class="col-6" style="padding:0;margin:0">
+                                        <!--
                                         <div style="font-size:10px;">
                                             <strong>Potongan</strong>
                                         </div>
+                                        -->
                                     </div>
                                     <div class="col-6  text-right" style="padding:0;margin:0">
                                         <div style="font-size:10px;">
@@ -465,7 +467,7 @@
                                             </strong>
                                         </div>
                                     </div>
-                                    -->
+                                    
                                 </div>
                                 <div class="row">
                                     <div class="col-6" style="padding:0;margin:0">
@@ -538,6 +540,11 @@
                                     <li style="font-size:9px" t-if="company.other_info_row4">
                                        <div class="m-0 p-0">
                                             <t t-esc="company.other_info_row4"/>
+                                        </div>
+                                    </li>
+                                    <li style="font-size:9px" t-if="company.other_info_row5">
+                                       <div class="m-0 p-0">
+                                            <t t-esc="company.other_info_row5"/>
                                         </div>
                                     </li>
                                 </ul>

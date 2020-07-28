@@ -16,3 +16,5 @@ class ResCompany(models.Model):
     other_info_row2 = fields.Char("Row 2", size=100)
     other_info_row3 = fields.Char("Row 3", size=100)
     other_info_row4 = fields.Char("Row 4", size=100)
+    other_info_row5 = fields.Char("Row 5", size=100)
+    

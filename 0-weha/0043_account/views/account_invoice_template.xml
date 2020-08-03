@@ -238,7 +238,7 @@
                                 </div>
                                 <div class="col-8">
                                     <t t-if="o.partner_id.street">
-                                        <div class="m-0 p-0" style="font-size:10px" t-esc="o.partner_id.street[0:100]"/>
+                                        <div class="m-0 p-0" style="font-size:10px" t-esc="o.partner_id.street[0:75]"/>
                                     </t>
                                 </div>
                         </div>
@@ -607,7 +607,9 @@
                                                     </div>
                                                 </td>
                                                 <td style="white-space:nowrap;">
-                                                    <div class="m-0 p-0" style="font-size:10px"/>
+                                                    <div class="m-0 p-0" style="font-size:10px">
+                                                        <t t-esc="l.lot_string.name"/>
+                                                    </div>
                                                 </td>
                                                 <td style="overflow:hidden;white-space:nowrap;">
                                                     <div class="m-0 p-0" style="font-size:10px">

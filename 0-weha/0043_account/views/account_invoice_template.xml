@@ -238,7 +238,7 @@
                                 </div>
                                 <div class="col-8">
                                     <t t-if="o.partner_id.street">
-                                        <div class="m-0 p-0" style="font-size:10px" t-esc="o.partner_id.street[0:75]"/>
+                                        <div class="m-0 p-0" style="font-size:10px" t-esc="o.partner_id.street[0:50]"/>
                                     </t>
                                 </div>
                         </div>

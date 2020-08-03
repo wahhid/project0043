@@ -38,7 +38,7 @@ class AccountInvoice(models.Model):
                     if line:
                         total_price = line.quantity * line.price_unit
                         if total_price:  
-                            discount_amount = total_price - line.price_subtotal
+                            discount_amount = total_price - line.price_total
                             if discount_amount: 
                                 final_discount_amount = final_discount_amount + discount_amount
                 invoice.update({'discount_total':final_discount_amount})

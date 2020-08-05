@@ -238,7 +238,7 @@
                                 </div>
                                 <div class="col-8">
                                     <t t-if="o.partner_id.street">
-                                        <div class="m-0 p-0" style="font-size:10px" t-esc="o.partner_id.street[0:50]"/>
+                                        <div class="m-0 p-0" style="font-size:10px" t-esc="o.partner_id.street[0:100]"/>
                                     </t>
                                 </div>
                         </div>
@@ -362,7 +362,7 @@
                             <div class="col-6">
                                 <div class="row">
                                     <span style="font-size:10px">
-                                        <strong>&#160;Hormat Kami</strong>
+                                        <strong>&#160;&#160;&#160;&#160;&#160;&#160;Hormat Kami</strong>
                                     </span>
                                 </div>
                                 <div class="row">
@@ -378,7 +378,7 @@
                             <div class="col-6">
                                 <div class="row">
                                     
-                                    <span style="font-size:10px"><strong>&#160;Penerima</strong></span>
+                                    <span style="font-size:10px"><strong>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Penerima</strong></span>
  
                                 </div>
                                 <div class="row">

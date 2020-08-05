@@ -45,8 +45,8 @@ class ReportSaleRecap(models.AbstractModel):
         return {
             'doc_ids': data['ids'],
             'doc_model': data['model'],
-            'date_start': date_start,
-            'date_end': date_end,
+            'date_start': date_start_obj,
+            'date_end': date_end_obj,
             'docs': docs,
         }
 

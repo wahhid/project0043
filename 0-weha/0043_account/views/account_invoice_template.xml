@@ -181,7 +181,7 @@
                                 </div>
                             </div>
                         <div class="row">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <t t-if="o.type == 'out_invoice'">
                                         <div class="m-0 p-0" style="font-size:10px"><strong>No. Faktur</strong></div>
                                     </t>
@@ -195,7 +195,7 @@
                                         <div style="font-size:10px"><strong>No. Refund</strong></div>
                                     </t>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-9">
                                     <div class="m-0 p-0" style="font-size:10px">
                                         <t t-esc="o.number"/>
                                         <t t-if="o.sale_order_id">
@@ -208,35 +208,35 @@
                                 </div>
                             </div>
                         <div class="row" t-if="o.type == 'out_refund'">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <div class="m-0 p-0" style="font-size:10px"><strong>No. Faktur</strong></div>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-9">
                                     <div class="m-0 p-0" style="font-size:10px" t-esc="o.origin"/>
                                 </div>
                          </div>
                         <div class="row" t-if="o.type == 'in_refund'">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <span style="font-size:10px"><strong>No. Faktur</strong></span>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-9">
                                     <span style="font-size:10px" t-esc="o.origin"/>
                                 </div>
                          </div>
 
                         <div class="row" t-if="o.type == 'out_invoice'">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <div class="m-0 p-0" style="font-size:10px"><strong>Pelanggan</strong></div>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-9">
                                     <div class="m-0 p-0" style="font-size:10px" t-field="o.partner_id.name"/>
                                 </div>
                             </div>
                         <div class="row" t-if="o.type == 'out_invoice'">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <div class="m-0 p-0" style="font-size:10px"><strong>Alamat Pelanggan</strong></div>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-9">
                                     <t t-if="o.partner_id.street">
                                         <div class="m-0 p-0" style="font-size:10px" t-esc="o.partner_id.street[0:100]"/>
                                     </t>
@@ -244,18 +244,18 @@
                         </div>
 
                         <div class="row" t-if="o.type == 'out_refund'">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <span style="font-size:10px"><strong>Pelanggan</strong></span>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-9">
                                     <span style="font-size:10px" t-field="o.partner_id.name"/>
                                 </div>
                         </div>
                         <div class="row" t-if="o.type == 'out_refund'">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <span style="font-size:10px"><strong>Alamat Pelanggan</strong></span>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-9">
                                     <t t-if="o.partner_id.street">
                                         <span style="font-size:10px" t-esc="o.partner_id.street[0:100]"/>
                                     </t>
@@ -263,18 +263,18 @@
                         </div>
 
                         <div class="row" t-if="o.type == 'in_invoice'">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <span style="font-size:10px"><strong>Supplier</strong></span>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-9">
                                     <span style="font-size:10px" t-field="o.partner_id.name"/>
                                 </div>
                             </div>
                         <div class="row" t-if="o.type == 'in_invoice'">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <span style="font-size:10px"><strong>Alamat Supplier</strong></span>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-9">
                                     <t t-if="o.partner_id.street">
                                         <span style="font-size:10px" t-esc="o.partner_id.street[0:100]"/>
                                     </t>
@@ -282,18 +282,18 @@
                         </div>
 
                         <div class="row" t-if="o.type == 'in_refund'">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <span style="font-size:10px"><strong>Supplier</strong></span>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-9">
                                     <span style="font-size:10px" t-field="o.partner_id.name"/>
                                 </div>
                             </div>
                         <div class="row" t-if="o.type == 'in_refund'">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <span style="font-size:10px"><strong>Alamat Supplier</strong></span>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-9">
                                     <t t-if="o.partner_id.street">
                                         <span style="font-size:10px" t-esc="o.partner_id.street[0:100]"/>
                                     </t>
@@ -302,10 +302,10 @@
 
 
                         <div class="row">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <div class="m-0 p-0" style="font-size:10px"><strong>Kota / Provinsi</strong></div>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-9">
                                     <div  class="m-0 p-0" style="font-size:10px"> 
                                         <t t-if="o.partner_id.city">
                                             <t t-esc="o.partner_id.city"/> 
@@ -318,7 +318,7 @@
                                 </div>
                         </div>
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-3">
                                 <t t-if="o.type == 'out_invoice'">
                                     <div class="m-0 p-0" style="font-size:10px"><strong>Cara Bayar</strong></div>
                                 </t>
@@ -326,7 +326,7 @@
                                     <div class="m-0 p-0" style="font-size:10px"><strong>Cara Refund</strong></div>
                                 </t>
                             </div>
-                            <div class="col-8">
+                            <div class="col-9">
                                 <div class="m-0 p-0" style="font-size:10px" t-esc="o.partner_id.res_partner_payment_method_id.name"/>
                             </div>
                         </div>

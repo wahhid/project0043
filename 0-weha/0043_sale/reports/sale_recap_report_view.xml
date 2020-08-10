@@ -29,13 +29,14 @@
         <t t-call="web.html_container">
             <div class="header text-center" style="border-bottom: 2px solid black">
                 <h3 class="text-center">Laporan Penjualan Rekap</h3>
-                <h5 class="text-center">PT.BERKAT CIPTA PAPERA</h5>
-                <h5 class="text-center">
+                <span class="text-center">PT.BERKAT CIPTA PAPERA</span>
+                <br/>
+                <span class="text-center">
                     <strong>From</strong>:
                     <t t-esc="date_start"/>
                     <strong>To</strong>:
                     <t t-esc="date_end"/>
-                </h5>
+                </span>
             </div>
             <div class="article">
                 <table class="table table-condensed table-bordered" style="width: 100%">
@@ -60,13 +61,17 @@
                                 </td>
                                 <t t-set="amount_total" t-value="amount_total + doc['amount_total']"/>
                                 <td class="text-right" style="white-space:nowrap;margin:0px;padding:0px;" >
-                                    <span t-esc="doc['amount_total']"/>
+                                    <span t-esc="convert_2float(doc['amount_total'],2,currency)"/>
                                 </td>
                             </tr>
                         </t>
                         <tr> 
-                            <td colspan="3">Total</td>
-                            <td class="text-right"><span t-esc="amount_total"/></td>
+                            <td colspan="3" class="text-left" style="white-space:nowrap;margin:0px;padding:0px;">
+                                Total
+                            </td>
+                            <td class="text-right" style="white-space:nowrap;margin:0px;padding:0px;">
+                                <span t-esc="convert_2float(amount_total,2,currency)"/>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -102,13 +107,14 @@
         <t t-call="web.html_container">
             <div class="header" style="border-bottom: 2px solid black">
                 <h3 class="text-center">Laporan Penjualan Detail</h3>
-                <h6 class="text-center">PT.BERKAT CIPTA PAPERA</h6>
-                <h6 class="text-center">
+                <span class="text-center">PT.BERKAT CIPTA PAPERA</span>
+                <br/>
+                <span class="text-center">
                     <strong>From</strong>:
                     <t t-esc="date_start"/>
                     <strong>To</strong>:
                     <t t-esc="date_end"/>
-                </h6>
+                </span>
             </div>
             <div class="article">
                 <table class="table table-bordered" style="width: 100%">
@@ -149,7 +155,7 @@
                                     <span t-esc="line['price_unit']"/>
                                 </td>
                                 <td style="white-space:nowrap;margin:0px;padding:0px;font-size:10px" class="text-right">
-                                    <span t-esc="line['price_subtotal']"/>
+                                    <span t-esc="convert_2float(line['price_subtotal'],2,currency)"/>
                                 </td>
                             </tr>
                             <tr >
@@ -158,13 +164,17 @@
                                 </td>
                                 <t set="amount_total" t-value="amount_total + doc['amount_total']"/>
                                 <td style="white-space:nowrap;margin:0px;padding:0px;font-size:10px" colspan="5" class="text-right">
-                                    <span t-esc="doc['amount_total']"/>
+                                    <span t-esc="convert_2float(doc['amount_total'],2,currency)"/>
                                 </td>
                             </tr>
                         </t>
                         <tr>
-                            <td colspan="5" style="font-size:10px">Total</td>
-                            <td style="font-size:10px"><span t-esc="amount_total"/></td>
+                            <td colspan="5" class="text-left" style="white-space:nowrap;margin:0px;padding:0px;font-size:10px">
+                                Total
+                            </td>
+                            <td class="text-right" style="white-space:nowrap;margin:0px;padding:0px;font-size:10px">
+                                <span t-esc="convert_2float(amount_total,2,currency)"/>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

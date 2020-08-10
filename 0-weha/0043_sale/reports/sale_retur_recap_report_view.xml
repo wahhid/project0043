@@ -28,14 +28,14 @@
         <t t-call="web.html_container">
             <div class="header" style="border-bottom: 2px solid black">
                 <h3 class="text-center">Laporan Retur Penjualan Rekap</h3>
-                <h4 class="text-center">PT.BERKAT CIPTA PAPERA</h4>
+                <h6 class="text-center">PT.BERKAT CIPTA PAPERA</h6>
                 
-                <h4 class="text-center">
+                <h6 class="text-center">
                     <strong>From</strong>:
                     <t t-esc="date_start"/>
                     <strong>To</strong>:
                     <t t-esc="date_end"/>
-                </h4>
+                </h6>
             </div>
             <div class="article">
                 <table class="table table-condensed table-bordered" style="width: 100%">
@@ -46,22 +46,33 @@
                         <th class="text-center" style="width: 20%">Total</th>
                     </thead>
                     <tbody>
+                        <t t-set="amount_total" t-value="0"/>
                         <t t-foreach="docs" t-as="doc">
+                            <t t-set="amount_total" t-value="amount_total + doc['amount_total']"/>
                             <tr>
-                                <td>
+                                <td class="text-left" style="white-space:nowrap;margin:0px;padding:0px;">
                                     <span t-esc="doc['number']"/>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" style="white-space:nowrap;margin:0px;padding:0px;">
                                     <span t-esc="doc['date_invoice']"/>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-left" style="white-space:nowrap;margin:0px;padding:0px;">
                                     <span t-esc="doc['partner_name']"/>
                                 </td>
-                                 <td class="text-center">
-                                    <span t-esc="doc['amount_total']"/>
+                                 <td class="text-right" style="white-space:nowrap;margin:0px;padding:0px;">
+                                    
+                                    <span t-esc="convert_2float(doc['amount_total'],2,currency)"/>
                                 </td>
                             </tr>
                         </t>
+                        <tr>
+                            <td class="text-left" style="white-space:nowrap;margin:0px;padding:0px;">
+                                Total
+                            </td>
+                            <td class="text-right" colspan="3" style="white-space:nowrap;margin:0px;padding:0px;">
+                                <span t-esc="convert_2float(amount_total,2,currency)"/>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -97,13 +108,13 @@
         <t t-call="web.html_container">
             <div class="header" style="border-bottom: 2px solid black">
                 <h3 class="text-center">Laporan Retur Penjualan Detail</h3>
-                <h4 class="text-center">PT.BERKAT CIPTA PAPERA</h4>
-                <h4 class="text-center">
+                <h6 class="text-center">PT.BERKAT CIPTA PAPERA</h6>
+                <h6 class="text-center">
                     <strong>From</strong>:
                     <t t-esc="date_start"/>
                     <strong>To</strong>:
                     <t t-esc="date_end"/>
-                </h4>
+                </h6>
             </div>
             <div class="article">
                 <table class="table table-condensed table-bordered" style="width: 100%">
@@ -115,46 +126,56 @@
                         <th class="text-center" style="width: 20%">Total</th>
                     </thead>
                     <tbody>
+                        <t t-set="amount_total" t-value="0"/>
                         <t t-foreach="docs" t-as="doc">
+                            <t t-set="amount_total" t-value="amount_total + doc['amount_total']"/>
                             <tr>
-                                <td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;">
                                     <span t-esc="doc['number']"/>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" style="white-space:nowrap;margin:0px;padding:0px;">
                                     <span t-esc="doc['date_invoice']"/>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" style="white-space:nowrap;margin:0px;padding:0px;">
                                     <span t-esc="doc['partner_name']"/>
                                 </td>
-                                <td colspan="3" class="text-left">
+                                <td colspan="3" class="text-left" style="white-space:nowrap;margin:0px;padding:0px;">
 
                                 </td>
                             </tr>
                             <tr t-foreach="doc['lines']" t-as="line">
                                 <td>
                                 </td>
-                                <td colspan="2" class="text-left">
+                                <td colspan="2" class="text-left" style="white-space:nowrap;margin:0px;padding:0px;">
                                     <span t-esc="line['product_name']"/>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" style="white-space:nowrap;margin:0px;padding:0px;">
                                     <span t-esc="line['quantity']"/>
                                 </td>
-                                <td class="text-right">
-                                    <span t-esc="line['price_unit']"/>
+                                <td class="text-right" style="white-space:nowrap;margin:0px;padding:0px;">
+                                    <span t-esc="convert_2float(line['price_unit'],2,currency)"/>
                                 </td>
-                                <td class="text-right">
-                                    <span t-esc="line['price_subtotal']"/>
+                                <td class="text-right" style="white-space:nowrap;margin:0px;padding:0px;">
+                                    <span t-esc="convert_2float(line['price_subtotal'],2,currency)"/>
                                 </td>
                             </tr>
                             <tr >
-                                <td>
+                                <td style="white-space:nowrap;margin:0px;padding:0px;"> 
                                     <span>Total</span>
                                 </td>
-                                <td colspan="5" class="text-right">
-                                    <span t-esc="doc['amount_total']"/>
+                                <td colspan="5" class="text-right" style="white-space:nowrap;margin:0px;padding:0px;">
+                                    <span t-esc="convert_2float(doc['amount_total'],2,currency)"/>
                                 </td>
                             </tr>
                         </t>
+                        <tr>
+                            <td class="text-left" style="white-space:nowrap;margin:0px;padding:0px;">
+                                Total
+                            </td>
+                            <td class="text-right" colspan="5" style="white-space:nowrap;margin:0px;padding:0px;">
+                                <span t-esc="convert_2float(amount_total,2,currency)"/>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

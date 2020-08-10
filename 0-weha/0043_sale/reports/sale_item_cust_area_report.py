@@ -111,11 +111,12 @@ class ReportSaleItemCustArea(models.AbstractModel):
             vals.update({'partner_ids': partner_ids})
             docs.append(vals)
         _logger.info(docs)
+        
         return {
             'doc_ids': data['ids'],
             'doc_model': data['model'],
-            'date_start': date_start,
-            'date_end': date_end,
+            'date_start': date_start_obj.strftime("%d-%m-%Y"),
+            'date_end': date_end_obj.strftime("%d-%m-%Y"),
             'company': self.env.user.company_id,
             'docs': docs,
         }

@@ -28,14 +28,14 @@
     <template id="sale_item_cust_area_report_view">
         <t t-call="web.html_container">
             <div class="header" style="border-bottom: 2px solid black">
-                <h3 class="text-center">LAPORAN PENJUALAN PER AREA</h3>
-                <h4 class="text-center">PT.BERKAT CIPTA PAPERA</h4>
-                <h4 class="text-center">
+                <h4 class="text-center">LAPORAN PENJUALAN PER AREA</h4>
+                <h6 class="text-center">PT.BERKAT CIPTA PAPERA</h6>
+                <h6 class="text-center">
                     <strong>From</strong>:
                     <t t-esc="date_start"/>
                     <strong>To</strong>:
                     <t t-esc="date_end"/>
-                </h4>
+                </h6>
             </div>
             <div class="article">
                 <table class="table table-condensed table-bordered" style="width: 100%">
@@ -48,6 +48,7 @@
                         <th class="text-center" style="width: 20%">NOMINAL FAKTUR</th>
                     </thead>
                     <tbody>
+                        <t t-set="amount_total" t-value="0"/>
                         <t t-foreach="docs" t-as="doc">
                             <tr>
                                 <td style="white-space:nowrap;margin:0px;padding:0px;"></td>
@@ -65,6 +66,7 @@
                                     </td>
                                 </tr>
                                 <t t-foreach="partner['invoice_ids']" t-as="invoice">
+                                    <t t-set="amount_total" t-value="amount_total + invoice['amount_total']"/>
                                     <t t-set="first_row" t-value="1"/>
                                     <tr t-foreach="invoice['lines']" t-as="line">
                                         <t t-if="first_row == 1">
@@ -85,20 +87,28 @@
                                         <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
                                             <span t-esc="line['quantity']"/>
                                         </td>
-                                        <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-center">
-                                            <span t-esc="line['price_subtotal']"/>
+                                        <td style="white-space:nowrap;margin:0px;padding:0px;" class="text-right">
+                                            <span t-esc="line['price_subtotal']"  t-options='{"widget": "monetary", "display_currency": company.currency_id}'/>
                                         </td>
                                     </tr>
                                     <t t-set="first_row" t-value="1"/>
                                     <tr>
                                         <td colspan="4" style="white-space:nowrap;margin:0px;padding:0px;"></td>
                                         <td style="white-space:nowrap;margin:0px;padding:0px;"><span>Total</span></td>
-                                        <td style="white-space:nowrap;margin:0px;padding:0px;">
+                                        <td class="text-right" style="white-space:nowrap;margin:0px;padding:0px;">
                                             <span t-esc="invoice['amount_total']"  t-options='{"widget": "monetary", "display_currency": company.currency_id}'/>
                                         </td>
                                     </tr>
                                 </t>
                             </t>
+                            <tr>
+                                <td class="text-left" style="white-space:nowrap;margin:0px;padding:0px;">
+                                    Total
+                                </td>
+                                <td colspan="6" class="text-right" style="white-space:nowrap;margin:0px;padding:0px;">
+                                    <span t-esc="amount_total"  t-options='{"widget": "monetary", "display_currency": company.currency_id}'/>
+                                </td>
+                            </tr>
                         </t>
                     </tbody>
                 </table>

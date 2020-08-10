@@ -16,6 +16,18 @@ class ReportSaleItemCust(models.AbstractModel):
 
     _name = 'report.0043_sale.sale_item_cust_report_view'
 
+    def convert_2float(self, value, precision=2, currency_obj=None, context=None):
+        fmt = '%f' if precision is None else '%.{precision}f'
+        lang_code = self.env.context.get('lang') or 'en_US'
+        lang = self.env['res.lang']
+        formatted = formatLang(self.env, value, currency_obj=currency_obj)        
+        #if currency_obj:
+        #    if currency_obj.position == 'before':
+        #        formatted = currency_obj.symbol + ' ' + formatted
+        #else:
+        #    formatted = formatted + ' ' + currency_obj.symbol
+        return formatted
+    
     @api.model
     def _get_report_values(self, docids, data=None):
         date_start = data['form']['date_start']
@@ -92,9 +104,11 @@ class ReportSaleItemCust(models.AbstractModel):
         return {
             'doc_ids': data['ids'],
             'doc_model': data['model'],
-            'date_start': date_start,
-            'date_end': date_end,
+            'date_start': date_start_obj.strftime("%d-%m-%Y"),
+            'date_end': date_end_obj.strftime("%d-%m-%Y"),
             'company': self.env.user.company_id,
+            'currency': self.env.user.company_id.currency_id,
+            'convert_2float': self.convert_2float,
             'docs': docs,
         }
 

@@ -24,6 +24,11 @@ class ReportSaleItem(models.AbstractModel):
         date_start_obj = datetime.strptime(date_start, DATE_FORMAT)
         date_end_obj = datetime.strptime(date_end, DATE_FORMAT)
         date_diff = (date_end_obj - date_start_obj).days + 1
+        
+        if len(merk_ids) == 1:
+            merks = "(" + str(merk_ids[0]) + ")"
+        else:
+            merks = tuple(merk_ids)
 
         sql = """SELECT c.default_code, d.name as product_name, 
                         e.name as merk_name, d.size, sum(a.quantity) as total_item
@@ -33,7 +38,8 @@ class ReportSaleItem(models.AbstractModel):
                     LEFT JOIN product_template d ON c.product_tmpl_id = d.id
                     LEFT JOIN product_merk e ON d.merk_id = e.id
                     WHERE b.date_invoice>='%s' AND b.date_invoice<='%s' AND d.merk_id in %s AND b.type='out_invoice'
-                    GROUP BY c.default_code, d.name, e.name, d.size""" % (date_start_obj.strftime(DATETIME_FORMAT),  date_end_obj.strftime(DATETIME_FORMAT), tuple(merk_ids))
+                    GROUP BY c.default_code, d.name, e.name, d.size
+                    ORDER BY c.default_code""" % (date_start_obj.strftime(DATETIME_FORMAT),  date_end_obj.strftime(DATETIME_FORMAT), merks)
                     
         _logger.info(sql)
         self.env.cr.execute(sql)
@@ -54,8 +60,8 @@ class ReportSaleItem(models.AbstractModel):
         return {
             'doc_ids': data['ids'],
             'doc_model': data['model'],
-            'date_start': date_start,
-            'date_end': date_end,
+            'date_start': date_start_obj.strftime("%d-%m-%Y"),
+            'date_end': date_end_obj.strftime("%d-%m-%Y"),
             'docs': docs,
         }
 
@@ -76,6 +82,11 @@ class ReportSaleReturItem(models.AbstractModel):
         date_end_obj = datetime.strptime(date_end, DATE_FORMAT)
         date_diff = (date_end_obj - date_start_obj).days + 1
 
+        if len(merk_ids) == 1:
+                merks = "(" + str(merk_ids[0]) + ")"
+        else:
+            merks = tuple(merk_ids)
+            
         sql = """SELECT c.default_code, d.name as product_name, 
                         e.name as merk_name, d.size, sum(a.quantity) as total_item
                     FROM account_invoice_line a
@@ -83,8 +94,9 @@ class ReportSaleReturItem(models.AbstractModel):
                     LEFT JOIN product_product c ON a.product_id = c.id 
                     LEFT JOIN product_template d ON c.product_tmpl_id = d.id
                     LEFT JOIN product_merk e ON d.merk_id = e.id
-                    WHERE b.date_invoice>='%s' AND b.date_invoice<='%s' AND b.type='out_refund'
-                    GROUP BY c.default_code, d.name, e.name, d.size""" % (date_start_obj.strftime(DATETIME_FORMAT),  date_end_obj.strftime(DATETIME_FORMAT))
+                    WHERE b.date_invoice>='%s' AND b.date_invoice<='%s' AND b.type='out_refund' AND d.merk_id in %s
+                    GROUP BY c.default_code, d.name, e.name, d.size
+                    ORDER BY c.default_code""" % (date_start_obj.strftime(DATETIME_FORMAT),  date_end_obj.strftime(DATETIME_FORMAT), merks)
                     
         _logger.info(sql)
         self.env.cr.execute(sql)
@@ -105,8 +117,8 @@ class ReportSaleReturItem(models.AbstractModel):
         return {
             'doc_ids': data['ids'],
             'doc_model': data['model'],
-            'date_start': date_start,
-            'date_end': date_end,
+            'date_start': date_start_obj.strftime("%d-%m-%Y"),
+            'date_end': date_end_obj.strftime("%d-%m-%Y"),
             'docs': docs,
         }
 
